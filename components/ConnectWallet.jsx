@@ -1,4 +1,5 @@
 import token from "../public/token.gif";
+import { IoCloseOutline } from "react-icons/io5";
 
 import x from "../public/icons/x.svg";
 
@@ -6,6 +7,9 @@ import { useState } from "react";
 
 // eslint-disable-next-line react/prop-types
 const ConnectWallet = ({ setLoggedIn }) => {
+  const [tutoriales, setTutoriales] = useState(false);
+  const [tutorialDonacion, setTutorialDonacion] = useState(false);
+  const [tutorialCompra, setTutorialCompra] = useState(false);
   const [loggedWallet, setLoggedWallet] = useState(false);
   const [loggedX, setLoggedX] = useState(false);
 
@@ -13,28 +17,69 @@ const ConnectWallet = ({ setLoggedIn }) => {
     <div className="w-full">
       <div className="w-full flex flex-col items-center gap-[20px]">
         {/* Tutoriales */}
-        <div className="aspect-video w-full max-w-[700px] bg-slate-300">
-          <iframe
-            width="100%"
-            height="100%"
-            src="https://www.youtube.com/embed/-ISfTD17gEw?si=lcgBbEWDDYcK5I-Y"
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe>
-        </div>
-        <div className="aspect-video w-full max-w-[700px] bg-slate-300">
-          <iframe
-            width="100%"
-            height="100%"
-            src="https://www.youtube.com/embed/-ISfTD17gEw?si=lcgBbEWDDYcK5I-Y"
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe>
-        </div>
+        <button
+          onClick={() => setTutoriales(true)}
+          className="mt-[20px] border border-white px-6 py-4 rounded-[18px] bg-primary text-white font-semibold uppercase"
+        >
+          Tutoriales
+        </button>
+        {tutoriales && (
+          <div className="bg-black bg-opacity-90 absolute top-0 left-0 w-full h-full flex flex-col items-center p-2">
+            <div className="bg-black bg-opacity-50 border border-primary rounded-[18px] p-4 relative md:w-[70%] flex flex-col items-center">
+              {!tutorialDonacion && !tutorialCompra ? (
+                <div className="flex gap-[20px]">
+                  <button
+                    onClick={() => setTutorialDonacion(true)}
+                    className="mt-12 border border-white px-6 py-4 rounded-[18px] bg-primary text-white font-semibold uppercase"
+                  >
+                    Tutorial Donacion
+                  </button>
+                  <button
+                    onClick={() => setTutorialCompra(true)}
+                    className="mt-12 border border-white px-6 py-4 rounded-[18px] bg-primary text-white font-semibold uppercase"
+                  >
+                    Tutorial Compra
+                  </button>
+                </div>
+              ) : tutorialDonacion ? (
+                <div className="mt-12 w-full max-w-[700px] aspect-video bg-slate-300">
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src="https://www.youtube.com/embed/-ISfTD17gEw?si=lcgBbEWDDYcK5I-Y"
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              ) : (
+                <div className="mt-12 aspect-video w-full max-w-[700px] bg-slate-300">
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src="https://www.youtube.com/embed/-ISfTD17gEw?si=lcgBbEWDDYcK5I-Y"
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              )}
+              <button
+                onClick={() => {
+                  setTutoriales(false);
+                  setTutorialDonacion(false);
+                  setTutorialCompra(false);
+                }}
+                className="absolute right-0 top-0"
+              >
+                <IoCloseOutline className="text-5xl" />
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Connect Wallet */}
         <div className="w-full py-8 bg-black bg-opacity-80 border border-primary flex flex-col gap-[10px] items-center rounded-[18px]">
           <img
