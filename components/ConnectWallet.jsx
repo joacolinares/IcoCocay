@@ -7,9 +7,11 @@ import { useState } from "react";
 
 // eslint-disable-next-line react/prop-types
 const ConnectWallet = ({ setLoggedIn }) => {
+  //estados para manejar los modals de tutoriales
   const [tutoriales, setTutoriales] = useState(false);
   const [tutorialDonacion, setTutorialDonacion] = useState(false);
   const [tutorialCompra, setTutorialCompra] = useState(false);
+  //estados para ver si puede continuar (Ya conecto wallet y X)
   const [loggedWallet, setLoggedWallet] = useState(false);
   const [loggedX, setLoggedX] = useState(false);
 
