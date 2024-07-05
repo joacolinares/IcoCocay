@@ -26,7 +26,7 @@ const BuyCocay = ({ setBuyCocay }) => {
         <img
           src={token}
           alt="Token Gif"
-          className="object-cover max-w-[200px]"
+          className="object-cover max-w-[100px]"
         />
         <div className="w-full flex flex-col items-center gap-[15px]">
           <button className="px-4 py-2 border border-primary rounded-[18px]">

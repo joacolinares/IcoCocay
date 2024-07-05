@@ -4,13 +4,13 @@ import token from "../../public/token.gif";
 const LastTransactions = ({ yaCompro }) => {
   return (
     <div className="rounded-[18px] w-full">
-      <p>Tus últimas transacciones:</p>
+      <p className="text-xl font-semibold">Tus últimas transacciones:</p>
       {yaCompro ? (
         <div className="flex flex-col gap-[10px] mt-[10px]">
           {transactions.map((transaction) => (
             <div
               key={transaction.id}
-              className="bg-white text-black px-2 py-2 flex flex-col sm:flex-row items-center justify-between rounded-[18px]"
+              className="bg-secondaryback text-white px-2 py-2 flex flex-col sm:flex-row items-center justify-between rounded-[18px]"
             >
               <div className=" flex flex-col sm:flex-row gap-[10px] items-center p-1 text-center sm:text-start">
                 <div className="overflow-hidden w-full">

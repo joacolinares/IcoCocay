@@ -3,7 +3,7 @@ import { GiDiploma } from "react-icons/gi";
 import { IoMdOpen } from "react-icons/io";
 
 // eslint-disable-next-line react/prop-types
-const CocayInfo = ({ yaCompro }) => {
+const CocayInfo = ({ yaCompro, setModalGenerateCode }) => {
   return (
     <div className="bg-back p-2 rounded-[18px] w-full relative">
       {!yaCompro && (
@@ -37,7 +37,10 @@ const CocayInfo = ({ yaCompro }) => {
             <button className="bg-white px-4 py-2 rounded-[18px] text-black">
               TEAMS
             </button>
-            <button className="bg-white px-4 py-2 rounded-[18px] text-black">
+            <button
+              onClick={() => setModalGenerateCode(true)}
+              className="bg-white px-4 py-2 rounded-[18px] text-black"
+            >
               GENERATE CODE
             </button>
           </div>

@@ -6,14 +6,20 @@ import Camaras from "./Camaras";
 import { useState } from "react";
 import BuyCocay from "./comprar-modal/BuyCocay";
 import DonationsOrTransactions from "./DonationsOrTransactions";
+import PeopleTransactions from "./PeopleTransactions";
+import GenerateCode from "./GenerateCode";
 
 // eslint-disable-next-line react/prop-types
 const Comprar = ({ setComprar }) => {
   //Si alguna vez compro, es true
   // eslint-disable-next-line no-unused-vars
-  const [yaCompro, setYaCompro] = useState(false);
+  const [yaCompro, setYaCompro] = useState(true);
   //Para modal de comprar cocay
   const [buyCocay, setBuyCocay] = useState(false);
+  //Para modal de avances (Camaras)
+  const [modalAvances, setModalAvances] = useState(false);
+  //Para modal de Generate Code
+  const [modalGenerateCode, setModalGenerateCode] = useState(false);
 
   return (
     <div className="w-full py-8 bg-black bg-opacity-80 border border-primary flex flex-col gap-[10px] items-center rounded-[18px] relative p-2 sm:p-4">
@@ -36,7 +42,8 @@ const Comprar = ({ setComprar }) => {
             <FaCopy className="text-xl" />
           </button>
         </div>
-        <div className="flex gap-[10px]">
+        {/* Botones agregados */}
+        <div className="flex gap-[10px] flex-wrap justify-center">
           <button
             disabled={!yaCompro}
             className={`bg-white text-lg px-4 py-2 rounded-[18px] text-black disabled:opacity-50`}
@@ -50,22 +57,68 @@ const Comprar = ({ setComprar }) => {
           >
             Buy Cocay
           </button>
+          <button
+            onClick={() => setModalAvances(true)}
+            className={`bg-white text-lg px-4 py-2 rounded-[18px] text-black disabled:opacity-50`}
+          >
+            Avances
+          </button>
+          <button
+            className={`bg-white text-lg px-4 py-2 rounded-[18px] text-black disabled:opacity-50`}
+          >
+            Whitepaper
+          </button>
+          <button
+            className={`bg-white text-lg px-4 py-2 rounded-[18px] text-black disabled:opacity-50`}
+          >
+            Curriculum VITAE
+          </button>
+          <button
+            className={`bg-white text-lg px-4 py-2 rounded-[18px] text-black disabled:opacity-50`}
+          >
+            Brochure Cocay
+          </button>
+          <button
+            disabled={!yaCompro}
+            className={`bg-white text-lg px-4 py-2 rounded-[18px] text-black disabled:opacity-50`}
+          >
+            Contratos
+          </button>
+          <button
+            className={`bg-white text-lg px-4 py-2 rounded-[18px] text-black disabled:opacity-50`}
+          >
+            Tutoriales
+          </button>
         </div>
       </div>
       <div className="flex justify-between max-md:flex-wrap gap-[5px] w-full">
         <UserInfo />
-        <CocayInfo yaCompro={yaCompro} />
+        <CocayInfo
+          yaCompro={yaCompro}
+          setModalGenerateCode={setModalGenerateCode}
+        />
       </div>
       <div className="flex justify-between max-md:flex-wrap gap-[5px] w-full">
         <div className="bg-back rounded-[18px] w-full">
           <DonationsOrTransactions yaCompro={yaCompro} />
         </div>
-        <Camaras />
+        {/* Transacciones de personas */}
+        <PeopleTransactions />
       </div>
-      {/* Modal para comprar cocays */}
+      {/* Modales para los botones */}
       {buyCocay && (
         <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center">
           <BuyCocay setBuyCocay={setBuyCocay} />
+        </div>
+      )}
+      {modalAvances && (
+        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center">
+          <Camaras setModalAvances={setModalAvances} />
+        </div>
+      )}
+      {modalGenerateCode && (
+        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center">
+          <GenerateCode setModalGenerateCode={setModalGenerateCode} />
         </div>
       )}
     </div>

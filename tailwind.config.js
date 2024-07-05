@@ -10,6 +10,7 @@ export default {
       colors: {
         primary: "#9E7A31",
         back: "#262626",
+        secondaryback: "#585858",
       },
     },
   },
