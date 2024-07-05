@@ -3,9 +3,9 @@ import { FaCopy } from "react-icons/fa";
 import UserInfo from "./UserInfo";
 import CocayInfo from "./CocayInfo";
 import Camaras from "./Camaras";
-import InfoDonaciones from "./InfoDonaciones";
 import { useState } from "react";
 import BuyCocay from "./comprar-modal/BuyCocay";
+import DonationsOrTransactions from "./DonationsOrTransactions";
 
 // eslint-disable-next-line react/prop-types
 const Comprar = ({ setComprar }) => {
@@ -57,7 +57,9 @@ const Comprar = ({ setComprar }) => {
         <CocayInfo yaCompro={yaCompro} />
       </div>
       <div className="flex justify-between max-md:flex-wrap gap-[5px] w-full">
-        <InfoDonaciones />
+        <div className="bg-back rounded-[18px] w-full">
+          <DonationsOrTransactions yaCompro={yaCompro} />
+        </div>
         <Camaras />
       </div>
       {/* Modal para comprar cocays */}

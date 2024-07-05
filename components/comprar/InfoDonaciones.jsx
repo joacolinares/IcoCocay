@@ -6,7 +6,7 @@ import { FaShareAlt } from "react-icons/fa";
 
 const InfoDonaciones = () => {
   return (
-    <div className="bg-back p-2 rounded-[18px] w-full">
+    <div className="rounded-[18px] w-full">
       <div className="flex flex-col gap-[10px]">
         <p className="text-center w-full text-2xl">Donaciones</p>
         <div className="w-full flex justify-between">

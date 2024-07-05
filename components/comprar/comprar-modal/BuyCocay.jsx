@@ -5,13 +5,14 @@ import SelectCurrency from "./SelectCurrency";
 import { useState } from "react";
 import CurrencyBalance from "./CurrencyBalance";
 import SmartOrToken from "./SmartOrToken";
+import Amount from "./Amount";
 
 // eslint-disable-next-line react/prop-types
 const BuyCocay = ({ setBuyCocay }) => {
   const [selectedCurrency, setSelectedCurrency] = useState("USDT");
 
   return (
-    <div className="relative bg-back w-full max-w-[700px] my-8 rounded-[18px] border-2 border-primary">
+    <div className="relative bg-back w-full max-w-[700px] my-8 rounded-[18px] border-2 border-primary h-fit pb-12">
       <button
         onClick={() => {
           //Vuelve para atras
@@ -45,6 +46,7 @@ const BuyCocay = ({ setBuyCocay }) => {
           {/* Cuanto tiene de esa moneda? */}
           <CurrencyBalance selectedCurrency={selectedCurrency} />
           <SmartOrToken />
+          <Amount />
         </div>
       </div>
     </div>
