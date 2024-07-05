@@ -107,17 +107,17 @@ const Comprar = ({ setComprar }) => {
       </div>
       {/* Modales para los botones */}
       {buyCocay && (
-        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center">
+        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center ">
           <BuyCocay setBuyCocay={setBuyCocay} />
         </div>
       )}
       {modalAvances && (
-        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center">
+        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center ">
           <Camaras setModalAvances={setModalAvances} />
         </div>
       )}
       {modalGenerateCode && (
-        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center">
+        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center items-center">
           <GenerateCode setModalGenerateCode={setModalGenerateCode} />
         </div>
       )}
