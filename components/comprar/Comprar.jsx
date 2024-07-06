@@ -8,6 +8,7 @@ import BuyCocay from "./comprar-modal/BuyCocay";
 import DonationsOrTransactions from "./DonationsOrTransactions";
 import PeopleTransactions from "./PeopleTransactions";
 import GenerateCode from "./GenerateCode";
+import Stake from "./Stake";
 
 // eslint-disable-next-line react/prop-types
 const Comprar = ({ setComprar }) => {
@@ -20,6 +21,8 @@ const Comprar = ({ setComprar }) => {
   const [modalAvances, setModalAvances] = useState(false);
   //Para modal de Generate Code
   const [modalGenerateCode, setModalGenerateCode] = useState(false);
+  //Para modal de stake
+  const [modalStake, setModalStake] = useState(false);
 
   return (
     <div className="w-full py-8 bg-black bg-opacity-80 border border-primary flex flex-col gap-[10px] items-center rounded-[18px] relative p-2 sm:p-4">
@@ -96,6 +99,7 @@ const Comprar = ({ setComprar }) => {
         <CocayInfo
           yaCompro={yaCompro}
           setModalGenerateCode={setModalGenerateCode}
+          setModalStake={setModalStake}
         />
       </div>
       <div className="flex justify-between max-md:flex-wrap gap-[5px] w-full">
@@ -119,6 +123,11 @@ const Comprar = ({ setComprar }) => {
       {modalGenerateCode && (
         <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center items-center">
           <GenerateCode setModalGenerateCode={setModalGenerateCode} />
+        </div>
+      )}
+      {modalStake && (
+        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center items-center">
+          <Stake setModalStake={setModalStake} />
         </div>
       )}
     </div>

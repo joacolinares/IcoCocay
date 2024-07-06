@@ -1,9 +1,9 @@
+/* eslint-disable react/prop-types */
 import token from "../../public/token.gif";
 import { GiDiploma } from "react-icons/gi";
 import { IoMdOpen } from "react-icons/io";
 
-// eslint-disable-next-line react/prop-types
-const CocayInfo = ({ yaCompro, setModalGenerateCode }) => {
+const CocayInfo = ({ yaCompro, setModalGenerateCode, setModalStake }) => {
   return (
     <div className="bg-back p-2 rounded-[18px] w-full relative">
       {!yaCompro && (
@@ -31,7 +31,10 @@ const CocayInfo = ({ yaCompro, setModalGenerateCode }) => {
             <button className="bg-white px-4 py-2 rounded-[18px] text-black">
               EARN COCAYS
             </button>
-            <button className="bg-white px-4 py-2 rounded-[18px] text-black">
+            <button
+              onClick={() => setModalStake(true)}
+              className="bg-white px-4 py-2 rounded-[18px] text-black"
+            >
               STAKE
             </button>
             <button className="bg-white px-4 py-2 rounded-[18px] text-black">
