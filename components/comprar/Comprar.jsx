@@ -9,6 +9,8 @@ import DonationsOrTransactions from "./DonationsOrTransactions";
 import PeopleTransactions from "./PeopleTransactions";
 import GenerateCode from "./GenerateCode";
 import Stake from "./Stake";
+import EarnCocays from "./EarnCocays";
+import Teams from "./Teams";
 
 // eslint-disable-next-line react/prop-types
 const Comprar = ({ setComprar }) => {
@@ -23,6 +25,10 @@ const Comprar = ({ setComprar }) => {
   const [modalGenerateCode, setModalGenerateCode] = useState(false);
   //Para modal de stake
   const [modalStake, setModalStake] = useState(false);
+  //Para modal de EARN COCAYS
+  const [modalEarnCocays, setModalEarnCocays] = useState(false);
+  //Para modal de EARN COCAYS
+  const [modalTeams, setModalTeams] = useState(false);
 
   return (
     <div className="w-full py-8 bg-black bg-opacity-80 border border-primary flex flex-col gap-[10px] items-center rounded-[18px] relative p-2 sm:p-4">
@@ -100,6 +106,8 @@ const Comprar = ({ setComprar }) => {
           yaCompro={yaCompro}
           setModalGenerateCode={setModalGenerateCode}
           setModalStake={setModalStake}
+          setModalEarnCocays={setModalEarnCocays}
+          setModalTeams={setModalTeams}
         />
       </div>
       <div className="flex justify-between max-md:flex-wrap gap-[5px] w-full">
@@ -128,6 +136,16 @@ const Comprar = ({ setComprar }) => {
       {modalStake && (
         <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center items-center">
           <Stake setModalStake={setModalStake} />
+        </div>
+      )}
+      {modalEarnCocays && (
+        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center items-center">
+          <EarnCocays setModalEarnCocays={setModalEarnCocays} />
+        </div>
+      )}
+      {modalTeams && (
+        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center items-center">
+          <Teams setModalTeams={setModalTeams} />
         </div>
       )}
     </div>

@@ -3,7 +3,13 @@ import token from "../../public/token.gif";
 import { GiDiploma } from "react-icons/gi";
 import { IoMdOpen } from "react-icons/io";
 
-const CocayInfo = ({ yaCompro, setModalGenerateCode, setModalStake }) => {
+const CocayInfo = ({
+  yaCompro,
+  setModalGenerateCode,
+  setModalStake,
+  setModalEarnCocays,
+  setModalTeams,
+}) => {
   return (
     <div className="bg-back p-2 rounded-[18px] w-full relative">
       {!yaCompro && (
@@ -28,7 +34,10 @@ const CocayInfo = ({ yaCompro, setModalGenerateCode, setModalStake }) => {
         </div>
         <div className="flex gap-[10px] items-center">
           <div className="w-full mt-[20px] flex flex-wrap justify-center items-center gap-[5px]">
-            <button className="bg-white px-4 py-2 rounded-[18px] text-black">
+            <button
+              onClick={() => setModalEarnCocays(true)}
+              className="bg-white px-4 py-2 rounded-[18px] text-black"
+            >
               EARN COCAYS
             </button>
             <button
@@ -37,7 +46,10 @@ const CocayInfo = ({ yaCompro, setModalGenerateCode, setModalStake }) => {
             >
               STAKE
             </button>
-            <button className="bg-white px-4 py-2 rounded-[18px] text-black">
+            <button
+              onClick={() => setModalTeams(true)}
+              className="bg-white px-4 py-2 rounded-[18px] text-black"
+            >
               TEAMS
             </button>
             <button
