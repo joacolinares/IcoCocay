@@ -2,15 +2,15 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import { FaCopy } from "react-icons/fa";
 import UserInfo from "./UserInfo";
 import CocayInfo from "./CocayInfo";
-import Camaras from "./Camaras";
+import Camaras from "./modals/Camaras";
 import { useState } from "react";
 import BuyCocay from "./comprar-modal/BuyCocay";
 import DonationsOrTransactions from "./DonationsOrTransactions";
 import PeopleTransactions from "./PeopleTransactions";
-import GenerateCode from "./GenerateCode";
-import Stake from "./Stake";
-import EarnCocays from "./EarnCocays";
-import Teams from "./Teams";
+import GenerateCode from "./modals/GenerateCode";
+import Stake from "./modals/Stake";
+import EarnCocays from "./modals/EarnCocays";
+import Teams from "./modals/Teams";
 
 // eslint-disable-next-line react/prop-types
 const Comprar = ({ setComprar }) => {

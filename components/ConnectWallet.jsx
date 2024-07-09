@@ -21,24 +21,24 @@ const ConnectWallet = ({ setLoggedIn }) => {
         {/* Tutoriales */}
         <button
           onClick={() => setTutoriales(true)}
-          className="mt-[20px] border border-white px-6 py-4 rounded-[18px] bg-primary text-white font-semibold uppercase"
+          className="mt-[20px] button-3d-2"
         >
           Tutoriales
         </button>
         {tutoriales && (
-          <div className="bg-black bg-opacity-90 absolute top-0 left-0 w-full h-full flex flex-col items-center p-2">
+          <div className="bg-black bg-opacity-90 absolute top-0 left-0 w-full h-full flex flex-col items-center p-2 z-10">
             <div className="bg-black bg-opacity-50 border border-primary rounded-[18px] p-4 relative md:w-[70%] flex flex-col items-center">
               {!tutorialDonacion && !tutorialCompra ? (
                 <div className="flex gap-[20px]">
                   <button
                     onClick={() => setTutorialDonacion(true)}
-                    className="mt-12 border border-white px-6 py-4 rounded-[18px] bg-primary text-white font-semibold uppercase"
+                    className="mt-12 button-3d-2"
                   >
                     Tutorial Donacion
                   </button>
                   <button
                     onClick={() => setTutorialCompra(true)}
-                    className="mt-12 border border-white px-6 py-4 rounded-[18px] bg-primary text-white font-semibold uppercase"
+                    className="mt-12 button-3d-2"
                   >
                     Tutorial Compra
                   </button>
@@ -114,6 +114,7 @@ const ConnectWallet = ({ setLoggedIn }) => {
             <img src={x} alt="x" className="object-cover w-[35px]" />
             <p>Log in with X</p>
           </button>
+
           <button
             onClick={() => {
               if (loggedWallet && loggedX) {
@@ -121,7 +122,7 @@ const ConnectWallet = ({ setLoggedIn }) => {
               }
             }}
             disabled={!(loggedWallet && loggedX)}
-            className="mt-[20px] border border-white px-4 py-2 rounded-[18px] bg-primary text-white font-semibold disabled:opacity-50"
+            className="mt-[20px] button-3d-1"
           >
             Continuar
           </button>

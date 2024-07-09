@@ -1,5 +1,6 @@
 import { IoMdArrowRoundBack } from "react-icons/io";
 
+// eslint-disable-next-line react/prop-types
 const Teams = ({ setModalTeams }) => {
   return (
     <div className="relative bg-back w-full max-w-[700px] my-8 rounded-[18px] border-2 border-primary h-fit pb-12 p-2">

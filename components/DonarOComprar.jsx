@@ -21,17 +21,11 @@ const DonarOComprar = () => {
             <span className="text-primary font-semibold">Pepit@!</span>
           </p>
           <div className="flex gap-[20px] flex-wrap mt-[20px]">
-            <button
-              onClick={() => setDonar(true)}
-              className="bg-primary text-white font-semibold rounded-[18px] px-4 py-2 flex gap-[10px] items-center"
-            >
-              <p>Donar</p>
+            <button onClick={() => setDonar(true)} className="button-3d-2">
+              Donar
             </button>
-            <button
-              onClick={() => setComprar(true)}
-              className="bg-white text-primary font-semibold rounded-[18px] px-4 py-2 flex gap-[10px] items-center"
-            >
-              <p>Comprar</p>
+            <button onClick={() => setComprar(true)} className="button-3d-1">
+              Comprar
             </button>
           </div>
         </div>
