@@ -53,50 +53,24 @@ const Comprar = ({ setComprar }) => {
         </div>
         {/* Botones agregados */}
         <div className="flex gap-[10px] flex-wrap justify-center">
-          <button
-            disabled={!yaCompro}
-            className={`bg-white text-lg px-4 py-2 rounded-[18px] text-black disabled:opacity-50`}
-          >
+          {/* Este boton abre el modal para comprar cocays */}
+          <button onClick={() => setBuyCocay(true)} className="button-3d-2">
+            Comprar Cocay
+          </button>
+          <button onClick={() => console.log("asd")} className="button-3d-2">
+            Donar
+          </button>
+          <button onClick={() => setModalTeams(true)} className="button-3d-2">
+            Mi Red
+          </button>
+          <button disabled={!yaCompro} className={`button-3d-2`}>
             Mis Codigos
           </button>
-          {/* Este boton abre el modal para comprar cocays */}
           <button
-            onClick={() => setBuyCocay(true)}
-            className="bg-white text-lg px-4 py-2 rounded-[18px] text-black"
+            onClick={() => setModalGenerateCode(true)}
+            className="button-3d-2"
           >
-            Buy Cocay
-          </button>
-          <button
-            onClick={() => setModalAvances(true)}
-            className={`bg-white text-lg px-4 py-2 rounded-[18px] text-black disabled:opacity-50`}
-          >
-            Avances
-          </button>
-          <button
-            className={`bg-white text-lg px-4 py-2 rounded-[18px] text-black disabled:opacity-50`}
-          >
-            Whitepaper
-          </button>
-          <button
-            className={`bg-white text-lg px-4 py-2 rounded-[18px] text-black disabled:opacity-50`}
-          >
-            Curriculum VITAE
-          </button>
-          <button
-            className={`bg-white text-lg px-4 py-2 rounded-[18px] text-black disabled:opacity-50`}
-          >
-            Brochure Cocay
-          </button>
-          <button
-            disabled={!yaCompro}
-            className={`bg-white text-lg px-4 py-2 rounded-[18px] text-black disabled:opacity-50`}
-          >
-            Contratos
-          </button>
-          <button
-            className={`bg-white text-lg px-4 py-2 rounded-[18px] text-black disabled:opacity-50`}
-          >
-            Tutoriales
+            GENERAR CÓDIGO
           </button>
         </div>
       </div>
@@ -110,6 +84,19 @@ const Comprar = ({ setComprar }) => {
           setModalTeams={setModalTeams}
         />
       </div>
+      <div className="flex flex-wrap justify-center gap-[10px]">
+        <button onClick={() => setModalAvances(true)} className={`button-3d-1`}>
+          Avances
+        </button>
+        <button className={`button-3d-1`}>Whitepaper</button>
+        <button className={`button-3d-1`}>Curriculum VITAE</button>
+        <button className={`button-3d-1`}>Brochure Cocay</button>
+        <button disabled={!yaCompro} className={`button-3d-1`}>
+          Contratos
+        </button>
+        <button className={`button-3d-1`}>Tutoriales</button>
+      </div>
+
       <div className="flex justify-between max-md:flex-wrap gap-[5px] w-full">
         <div className="bg-back rounded-[18px] w-full">
           <DonationsOrTransactions yaCompro={yaCompro} />

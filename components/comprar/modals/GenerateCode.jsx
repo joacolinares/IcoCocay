@@ -66,10 +66,7 @@ const GenerateCode = ({ setModalGenerateCode }) => {
               className="rounded-[18px] p-2 text-white border border-orange-500 bg-black"
             />
           </div>
-          <button
-            onClick={() => setSiguiente(true)}
-            className="bg-white rounded-[18px] px-4 py-2 font-semibold text-primary"
-          >
+          <button onClick={() => setSiguiente(true)} className="button-3d-1">
             Siguiente
           </button>
         </div>
@@ -94,7 +91,7 @@ const GenerateCode = ({ setModalGenerateCode }) => {
           <p>Wallet USDT BNB: 0x4i5ni5jn3463</p>
           <button
             onClick={() => setModalGenerateCode(false)}
-            className="bg-white rounded-[18px] px-4 py-2 font-semibold text-primary"
+            className="button-3d-1"
           >
             GENERAR
           </button>

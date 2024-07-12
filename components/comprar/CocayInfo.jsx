@@ -11,9 +11,9 @@ const CocayInfo = ({
   setModalTeams,
 }) => {
   return (
-    <div className="bg-back p-2 rounded-[18px] w-full relative">
+    <div className="bg-back p-2 rounded-[18px] w-full relative z-[0]">
       {!yaCompro && (
-        <div className="absolute top-0 left-0 bg-black bg-opacity-90 rounded-[18px] w-full h-full flex justify-center items-center">
+        <div className="absolute top-0 left-0 bg-black bg-opacity-90 rounded-[18px] w-full h-full flex justify-center items-center z-[1]">
           <p className="text-2xl text-center">
             Compra cocays para habilitar esta seccion.
           </p>
@@ -36,28 +36,22 @@ const CocayInfo = ({
           <div className="w-full mt-[20px] flex flex-wrap justify-center items-center gap-[5px]">
             <button
               onClick={() => setModalEarnCocays(true)}
-              className="bg-white px-4 py-2 rounded-[18px] text-black"
+              className="button-3d-2"
             >
-              EARN COCAYS
+              COCAYS OBTENIDOS
             </button>
-            <button
-              onClick={() => setModalStake(true)}
-              className="bg-white px-4 py-2 rounded-[18px] text-black"
-            >
+            <button onClick={() => setModalStake(true)} className="button-3d-2">
               STAKE
             </button>
-            <button
-              onClick={() => setModalTeams(true)}
-              className="bg-white px-4 py-2 rounded-[18px] text-black"
-            >
-              TEAMS
-            </button>
-            <button
+            {/* <button onClick={() => setModalTeams(true)} className="button-3d-2">
+              EQUIPOS
+            </button> */}
+            {/* <button
               onClick={() => setModalGenerateCode(true)}
-              className="bg-white px-4 py-2 rounded-[18px] text-black"
+              className="button-3d-2"
             >
-              GENERATE CODE
-            </button>
+              GENERAR CÓDIGO
+            </button> */}
           </div>
         </div>
       </div>

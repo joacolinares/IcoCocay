@@ -89,7 +89,7 @@ const Stake = ({ setModalStake }) => {
           <button
             disabled={!(checked1 && checked2)}
             onClick={() => setSiguiente(true)}
-            className="bg-white rounded-[18px] px-4 py-2 font-semibold text-primary disabled:opacity-50"
+            className="button-3d-1"
           >
             Stake Now
           </button>
@@ -104,10 +104,7 @@ const Stake = ({ setModalStake }) => {
             </p>
           </div>
 
-          <button
-            onClick={() => setModalStake(false)}
-            className="bg-white rounded-[18px] px-4 py-2 font-semibold text-primary "
-          >
+          <button onClick={() => setModalStake(false)} className="button-3d-1 ">
             CONFIRMAR
           </button>
         </div>

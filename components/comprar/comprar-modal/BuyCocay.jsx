@@ -33,9 +33,9 @@ const BuyCocay = ({ setBuyCocay }) => {
             Codigo de referido
           </button>
           <button className="bg-white text-black px-4 py-2 rounded-[18px]">
-            Until sold out
+            Hasta agotar el suministro
           </button>
-          <p>USDT Raised: 999/3,000,000</p>
+          <p>USDT Recaudados: 999/3,000,000</p>
           {/* Precio cocay */}
           <PrecioCocay />
           {/* Con que moneda queres pagar? */}

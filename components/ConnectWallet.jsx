@@ -101,7 +101,7 @@ const ConnectWallet = ({ setLoggedIn }) => {
             <p>Connect wallet</p>
           </button>
 
-          <p className="text-xl font-semibold text-center">
+          {/* <p className="text-xl font-semibold text-center">
             Logueate con Twitter para apoyar la comunidad!
           </p>
 
@@ -113,15 +113,15 @@ const ConnectWallet = ({ setLoggedIn }) => {
           >
             <img src={x} alt="x" className="object-cover w-[35px]" />
             <p>Log in with X</p>
-          </button>
+          </button> */}
 
           <button
             onClick={() => {
-              if (loggedWallet && loggedX) {
+              if (loggedWallet) {
                 setLoggedIn(true);
               }
             }}
-            disabled={!(loggedWallet && loggedX)}
+            disabled={!loggedWallet}
             className="mt-[20px] button-3d-1"
           >
             Continuar

@@ -12,9 +12,7 @@ const Amount = () => {
           type="number"
           className="px-4 py-2 rounded-[18px] text-black max-sm:w-[90%]"
         />
-        <button className="px-4 py-2 rounded-[18px] text-black bg-white max-sm:w-[90%]">
-          Buy Now
-        </button>
+        <button className="button-3d-1 max-sm:w-[90%]">Buy Now</button>
       </div>
       <div className="hidden md:block w-[1px] bg-white" />
       <div className="flex flex-col gap-[20px] items-center">
@@ -28,9 +26,7 @@ const Amount = () => {
           type="number"
           className="px-4 py-2 rounded-[18px] text-black max-sm:w-[90%]"
         />
-        <button className="px-4 py-2 rounded-[18px] text-black bg-white max-sm:w-[90%]">
-          Buy with BNB
-        </button>
+        <button className="button-3d-1 max-sm:w-[90%]">Buy with BNB</button>
       </div>
     </div>
   );

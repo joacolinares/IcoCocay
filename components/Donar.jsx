@@ -84,9 +84,7 @@ const Donar = ({ setDonar }) => {
           </div>
         </div>
         {/* Boton de donar */}
-        <button className="bg-primary text-white font-semibold rounded-[18px] px-4 py-4 flex gap-[10px] items-center justify-center text-2xl min-w-[200px]">
-          Donar
-        </button>
+        <button className="button-3d-2 min-w-[150px]">Donar</button>
       </div>
     </div>
   );
