@@ -22,6 +22,7 @@ const GenerateCode = ({ setModalGenerateCode }) => {
             <label>Nickname:</label>
             <input
               type="text"
+              disabled
               defaultValue={"pepe"}
               className="rounded-[18px] p-2 text-white border border-orange-500 bg-black"
             />
@@ -30,6 +31,7 @@ const GenerateCode = ({ setModalGenerateCode }) => {
             <label>Wallet:</label>
             <input
               type="text"
+              disabled
               defaultValue={"0x1234567890abcdef1234567890abcdef12345678"}
               className="rounded-[18px] p-2 text-white border border-orange-500 bg-black"
             />
@@ -40,6 +42,7 @@ const GenerateCode = ({ setModalGenerateCode }) => {
               type="number"
               defaultValue={6}
               className="rounded-[18px] p-2 text-white border border-orange-500 bg-black"
+              disabled
             />
           </div>
           <div className="flex flex-col">
@@ -51,7 +54,10 @@ const GenerateCode = ({ setModalGenerateCode }) => {
             />
           </div>
           <div className="flex flex-col">
-            <label>Wallet USDT BNB:</label>
+            <label>
+              <b>Wallet USDT BNB</b>
+              <br></br> (Aqui pega la wallet de tu asociado)
+            </label>
             <input
               type="text"
               defaultValue={12}
@@ -59,7 +65,11 @@ const GenerateCode = ({ setModalGenerateCode }) => {
             />
           </div>
           <div className="flex flex-col">
-            <label>Porcentaje:</label>
+            <label>
+              <b>Porcentaje:</b>
+              <br></br> (Este es el porcentaje que le cedes)
+            </label>
+
             <input
               type="number"
               defaultValue={6}

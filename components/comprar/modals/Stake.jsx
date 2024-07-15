@@ -22,12 +22,13 @@ const Stake = ({ setModalStake }) => {
         <div className="mt-12 w-full flex flex-col gap-[20px] items-center">
           <div className="flex flex-col gap-[10px] border rounded-[18px] border-[#636363] w-full px-4 py-2">
             <div className="flex justify-between flex-wrap">
-              <p>APR Estimado:</p>
-              <p>~25%</p>
+              <p>4 años:</p>
+              <p>&gt;</p>
+              <p>~100% ROI</p>
             </div>
           </div>
           <div className="flex flex-col gap-[10px] w-full">
-            <label>Staked amount</label>
+            <label>Cantidad en stake</label>
             <div className="flex justify-between border border-orange-500 p-2 rounded-[18px] w-full">
               <input
                 type="number"
@@ -37,17 +38,17 @@ const Stake = ({ setModalStake }) => {
               <p className="mr-4">Cocays</p>
               <button className="font-semibold">MAX</button>
             </div>
-            <p>Balance: 20 Cocays</p>
+            <p>Saldo: 20 Cocays</p>
           </div>
           <div className="flex flex-col w-full">
-            <p>My profit:</p>
+            <p>Mi ganancia:</p>
             <div className="border rounded-[18px] border-[#636363] px-4 py-2 flex justify-between items-center">
-              <p>Estimated daily profit:</p>
+              <p>Ganancia diaria estimada:</p>
               <p className="text-orange-500 text-sm">+0.05 COCAYS</p>
             </div>
           </div>
           <div>
-            <p>Order details</p>
+            <p>Detalles de la orden</p>
             {orderDetails.map((order, index) => (
               <div key={index}>
                 <p className="flex items-center gap-[5px]">
@@ -70,8 +71,8 @@ const Stake = ({ setModalStake }) => {
                   name="first"
                 />
                 <label>
-                  The profit comes from on-chain staking. If the on-chain ROI
-                  changes, the APR will adjust accordingly.
+                  La ganancia proviene del staking en cadena. Si el ROI en
+                  cadena cambia, el APR se ajustará en consecuencia
                 </label>
               </div>
               <div className="flex gap-[10px] text-sm">
@@ -81,7 +82,10 @@ const Stake = ({ setModalStake }) => {
                   id="second"
                   name="second"
                 />
-                <label>I have read and agreed to the Staking Agreement.</label>
+                <label>
+                  He leído y aceptado el{" "}
+                  <button className="text-blue-500">Acuerdo de Staking.</button>
+                </label>
               </div>
             </div>
           </div>
@@ -91,7 +95,7 @@ const Stake = ({ setModalStake }) => {
             onClick={() => setSiguiente(true)}
             className="button-3d-1"
           >
-            Stake Now
+            PARTICIPAR EN STAKING AHORA
           </button>
         </div>
       ) : (
@@ -117,23 +121,23 @@ export default Stake;
 
 const orderDetails = [
   {
-    name: "Staking Time",
+    name: "Tiempo de staking",
     when: "2024-06-19 13:24:56",
   },
   {
-    name: "Interest accrual start time",
+    name: "Hora de inicio del cálculo de intereses",
     when: "2024-06-20 11:00:00",
   },
   {
-    name: "Interest distribution time",
+    name: "Hora de distribución de intereses",
     when: "2024-06-21 19:00:00",
   },
   {
-    name: "Redemption time",
-    when: "Day D",
+    name: "Tiempo de redención",
+    when: "Día D",
   },
   {
-    name: "Redemption crediting time",
-    when: "Day D+4",
+    name: "Tiempo de acreditación de redención",
+    when: "Día D+4",
   },
 ];
