@@ -4,7 +4,9 @@ const Amount = () => {
       <div className="flex flex-col gap-[20px] items-center">
         <div className="flex items-center gap-[20px] w-full">
           <div className="h-[1px] w-full bg-primary" />
-          <p className="text-nowrap text-lg font-semibold">Amount in ETH</p>
+          <p className="text-nowrap text-lg font-semibold">
+            Disponible en USDT
+          </p>
           <div className="h-[1px] w-full bg-primary" />
         </div>
         <input
@@ -12,13 +14,13 @@ const Amount = () => {
           type="number"
           className="px-4 py-2 rounded-[18px] text-black max-sm:w-[90%]"
         />
-        <button className="button-3d-1 max-sm:w-[90%]">Buy Now</button>
+        <button className="button-3d-1 max-sm:w-[90%]">Verificar</button>
       </div>
       <div className="hidden md:block w-[1px] bg-white" />
       <div className="flex flex-col gap-[20px] items-center">
         <div className="flex items-center gap-[20px] w-full">
           <div className="h-[1px] w-full bg-primary" />
-          <p className="text-nowrap text-lg font-semibold">Blend</p>
+          <p className="text-nowrap text-lg font-semibold">Compra Cocay</p>
           <div className="h-[1px] w-full bg-primary" />
         </div>
         <input
@@ -26,7 +28,7 @@ const Amount = () => {
           type="number"
           className="px-4 py-2 rounded-[18px] text-black max-sm:w-[90%]"
         />
-        <button className="button-3d-1 max-sm:w-[90%]">Buy with BNB</button>
+        <button className="button-3d-1 max-sm:w-[90%]">Confirmar</button>
       </div>
     </div>
   );

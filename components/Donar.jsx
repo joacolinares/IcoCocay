@@ -53,7 +53,7 @@ const Donar = ({
             }`}
           >
             <BsFillCreditCard2FrontFill className="text-4xl text-primary" />
-            <p>Targeta</p>
+            <p>Tarjeta</p>
           </button>
         </div>
         <div className="flex flex-col gap-[10px] w-full">

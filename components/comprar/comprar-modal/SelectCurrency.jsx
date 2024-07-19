@@ -1,4 +1,5 @@
 import usdt from "../../../public/icons/usdt.svg";
+import card from "/icons/card.png";
 
 // eslint-disable-next-line react/prop-types
 const SelectCurrency = ({ selectedCurrency, setSelectedCurrency }) => {
@@ -32,5 +33,9 @@ const currencies = [
   {
     name: "USDT",
     logo: usdt,
+  },
+  {
+    name: "Tarjeta",
+    logo: card,
   },
 ];

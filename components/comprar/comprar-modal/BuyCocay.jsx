@@ -35,7 +35,7 @@ const BuyCocay = ({ setBuyCocay }) => {
           <button className="bg-white text-black px-4 py-2 rounded-[18px]">
             Hasta agotar el suministro
           </button>
-          <p>USDT Recaudados: 999/3,000,000</p>
+          <p>USDT Recaudados: 999/22,000,000</p>
           {/* Precio cocay */}
           <PrecioCocay />
           {/* Con que moneda queres pagar? */}
