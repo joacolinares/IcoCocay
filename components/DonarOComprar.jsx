@@ -3,7 +3,12 @@ import token from "../public/token.gif";
 import Comprar from "./comprar/Comprar";
 import Donar from "./Donar";
 
-const DonarOComprar = () => {
+const DonarOComprar = ({
+  loggedTwitter,
+  setLoggedTwitter,
+  modalLoginTwitter,
+  setModalLoginTwitter,
+}) => {
   const [comprar, setComprar] = useState(false);
   const [donar, setDonar] = useState(false);
 
@@ -30,9 +35,16 @@ const DonarOComprar = () => {
           </div>
         </div>
       ) : comprar ? (
-        <Comprar setComprar={setComprar} />
+        <Comprar setComprar={setComprar} setDonar={setDonar} />
       ) : (
-        <Donar setDonar={setDonar} />
+        <Donar
+          setDonar={setDonar}
+          setComprar={setComprar}
+          loggedTwitter={loggedTwitter}
+          setLoggedTwitter={setLoggedTwitter}
+          modalLoginTwitter={modalLoginTwitter}
+          setModalLoginTwitter={setModalLoginTwitter}
+        />
       )}
     </div>
   );

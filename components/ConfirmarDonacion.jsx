@@ -1,8 +1,19 @@
 import { useState } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import Agradecimiento from "./Agradecimiento";
 
-const ConfirmarDonacion = ({ setPresionoDonar }) => {
+const ConfirmarDonacion = ({
+  setPresionoDonar,
+  loggedTwitter,
+  setLoggedTwitter,
+  modalLoginTwitter,
+  setModalLoginTwitter,
+  setDonar,
+  setComprar,
+}) => {
   const [siguiente, setSiguiente] = useState(false);
+  const [agradecimiento, setAgradecimiento] = useState(false);
+
   return (
     <div className="relative bg-back w-full max-w-[700px] my-8 rounded-[18px] border-2 border-primary h-fit pb-12 p-2">
       <button
@@ -55,11 +66,27 @@ const ConfirmarDonacion = ({ setPresionoDonar }) => {
             <p>Total: $123 USD</p>
           </div>
           <button
-            onClick={() => setPresionoDonar(false)}
+            onClick={() => {
+              setAgradecimiento(true);
+            }}
             className="button-3d-1"
           >
             Confirmar donación
           </button>
+        </div>
+      )}
+      {agradecimiento && (
+        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center items-center">
+          <Agradecimiento
+            setAgradecimiento={setAgradecimiento}
+            setPresionoDonar={setPresionoDonar}
+            loggedTwitter={loggedTwitter}
+            setLoggedTwitter={setLoggedTwitter}
+            modalLoginTwitter={modalLoginTwitter}
+            setModalLoginTwitter={setModalLoginTwitter}
+            setDonar={setDonar}
+            setComprar={setComprar}
+          />
         </div>
       )}
     </div>

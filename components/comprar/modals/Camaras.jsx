@@ -14,7 +14,7 @@ const Camaras = ({ setModalAvances }) => {
       >
         <IoMdArrowRoundBack className="text-4xl text-white" />
       </button>
-      <div className="grid grid-cols-1 sm:grid-cols-2 justify-items-center gap-[5px] max-w-[250px] w-full">
+      <div className="grid grid-cols-1 sm:grid-cols-2 justify-items-center gap-[5px] max-w-[500px] w-full">
         {camaras.map((camara, i) => (
           <div
             key={i}

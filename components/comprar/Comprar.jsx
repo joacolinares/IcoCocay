@@ -13,7 +13,7 @@ import EarnCocays from "./modals/EarnCocays";
 import Teams from "./modals/Teams";
 
 // eslint-disable-next-line react/prop-types
-const Comprar = ({ setComprar }) => {
+const Comprar = ({ setComprar, setDonar }) => {
   //Si alguna vez compro, es true
   // eslint-disable-next-line no-unused-vars
   const [yaCompro, setYaCompro] = useState(true);
@@ -57,7 +57,13 @@ const Comprar = ({ setComprar }) => {
           <button onClick={() => setBuyCocay(true)} className="button-3d-2">
             Comprar Cocay
           </button>
-          <button onClick={() => console.log("asd")} className="button-3d-2">
+          <button
+            onClick={() => {
+              setComprar(false);
+              setDonar(true);
+            }}
+            className="button-3d-2"
+          >
             Donar
           </button>
           <button onClick={() => setModalTeams(true)} className="button-3d-2">

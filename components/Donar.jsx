@@ -8,7 +8,14 @@ import { FaWallet } from "react-icons/fa";
 import ConfirmarDonacion from "./ConfirmarDonacion";
 
 // eslint-disable-next-line react/prop-types
-const Donar = ({ setDonar }) => {
+const Donar = ({
+  setDonar,
+  setComprar,
+  loggedTwitter,
+  setLoggedTwitter,
+  modalLoginTwitter,
+  setModalLoginTwitter,
+}) => {
   //Metodo de pago usdt o targeta?
   const [metodoPago, setMetodoPago] = useState("usdt");
   const [presionoDonar, setPresionoDonar] = useState(false);
@@ -112,7 +119,15 @@ const Donar = ({ setDonar }) => {
       </div>
       {presionoDonar && (
         <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center items-center">
-          <ConfirmarDonacion setPresionoDonar={setPresionoDonar} />
+          <ConfirmarDonacion
+            setPresionoDonar={setPresionoDonar}
+            loggedTwitter={loggedTwitter}
+            setLoggedTwitter={setLoggedTwitter}
+            modalLoginTwitter={modalLoginTwitter}
+            setModalLoginTwitter={setModalLoginTwitter}
+            setDonar={setDonar}
+            setComprar={setComprar}
+          />
         </div>
       )}
     </div>
