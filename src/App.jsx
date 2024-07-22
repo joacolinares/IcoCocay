@@ -1,4 +1,6 @@
 import Pasos from "../components/Pasos";
+import { SiGitbook } from "react-icons/si";
+import { FaGithub } from "react-icons/fa6";
 
 function App() {
   return (
@@ -17,6 +19,16 @@ function App() {
           </video>
         </div>
       </div>
+      <footer className="bg-black py-2 px-2">
+        <div className="flex gap-[10px] w-full justify-center">
+          <a href="#">
+            <SiGitbook className="text-4xl text-primary" />
+          </a>
+          <a href="#">
+            <FaGithub className="text-4xl text-primary" />
+          </a>
+        </div>
+      </footer>
     </body>
   );
 }
