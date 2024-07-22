@@ -13,7 +13,14 @@ import EarnCocays from "./modals/EarnCocays";
 import Teams from "./modals/Teams";
 
 // eslint-disable-next-line react/prop-types
-const Comprar = ({ setComprar, setDonar }) => {
+const Comprar = ({
+  setComprar,
+  setDonar,
+  loggedTwitter,
+  setLoggedTwitter,
+  modalLoginTwitter,
+  setModalLoginTwitter,
+}) => {
   //Si alguna vez compro, es true
   // eslint-disable-next-line no-unused-vars
   const [yaCompro, setYaCompro] = useState(true);
@@ -113,16 +120,23 @@ const Comprar = ({ setComprar, setDonar }) => {
       {/* Modales para los botones */}
       {buyCocay && (
         <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center ">
-          <BuyCocay setBuyCocay={setBuyCocay} />
+          <BuyCocay
+            setBuyCocay={setBuyCocay}
+            loggedTwitter={loggedTwitter}
+            setLoggedTwitter={setLoggedTwitter}
+            modalLoginTwitter={modalLoginTwitter}
+            setModalLoginTwitter={setModalLoginTwitter}
+          />
         </div>
       )}
       {modalAvances && (
-        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center ">
+        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center items-center ">
+          {/* Camaras = avances */}
           <Camaras setModalAvances={setModalAvances} />
         </div>
       )}
       {modalGenerateCode && (
-        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center items-center">
+        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center">
           <GenerateCode setModalGenerateCode={setModalGenerateCode} />
         </div>
       )}
@@ -137,7 +151,7 @@ const Comprar = ({ setComprar, setDonar }) => {
         </div>
       )}
       {modalTeams && (
-        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center items-center">
+        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center">
           <Teams setModalTeams={setModalTeams} />
         </div>
       )}

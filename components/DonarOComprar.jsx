@@ -35,7 +35,14 @@ const DonarOComprar = ({
           </div>
         </div>
       ) : comprar ? (
-        <Comprar setComprar={setComprar} setDonar={setDonar} />
+        <Comprar
+          setComprar={setComprar}
+          setDonar={setDonar}
+          loggedTwitter={loggedTwitter}
+          setLoggedTwitter={setLoggedTwitter}
+          modalLoginTwitter={modalLoginTwitter}
+          setModalLoginTwitter={setModalLoginTwitter}
+        />
       ) : (
         <Donar
           setDonar={setDonar}

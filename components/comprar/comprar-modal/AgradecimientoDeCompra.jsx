@@ -1,15 +1,12 @@
 import { IoMdArrowRoundBack } from "react-icons/io";
-import LoginTwitterModal from "./LoginTwitterModal";
+import LoginTwitterModal from "../../LoginTwitterModal";
 
-const Agradecimiento = ({
+const AgradecimientoDeCompra = ({
   setAgradecimiento,
-  setPresionoDonar,
   loggedTwitter,
   setLoggedTwitter,
   modalLoginTwitter,
   setModalLoginTwitter,
-  setDonar,
-  setComprar,
 }) => {
   return (
     <div className="relative bg-back w-full max-w-[700px] my-8 rounded-[18px] border-2 border-primary h-fit pb-12 p-2">
@@ -28,10 +25,9 @@ const Agradecimiento = ({
             Gracias por ser parte de Cocay Token!
           </p>
         </div>
-        <div className="flex flex-wrap gap-[10px]">
+        <div className="flex justify-center items-center flex-wrap gap-[10px]">
           <button
             onClick={() => {
-              setPresionoDonar(false);
               setAgradecimiento(false);
             }}
             className="button-3d-1 "
@@ -45,8 +41,6 @@ const Agradecimiento = ({
                 setModalLoginTwitter(true);
               } else {
                 //Ir a twitter con el mensaje de donacion y entrar a el dashboard de compra de cocays
-                setDonar(false);
-                setComprar(true);
               }
             }}
             className="button-3d-1 "
@@ -69,4 +63,4 @@ const Agradecimiento = ({
   );
 };
 
-export default Agradecimiento;
+export default AgradecimientoDeCompra;

@@ -6,10 +6,20 @@ import { useState } from "react";
 import CurrencyBalance from "./CurrencyBalance";
 import SmartOrToken from "./SmartOrToken";
 import Amount from "./Amount";
+import LoginTwitterModal from "../../LoginTwitterModal";
+import AgradecimientoDeCompra from "./AgradecimientoDeCompra";
 
 // eslint-disable-next-line react/prop-types
-const BuyCocay = ({ setBuyCocay }) => {
+const BuyCocay = ({
+  setBuyCocay,
+  loggedTwitter,
+  setLoggedTwitter,
+  modalLoginTwitter,
+  setModalLoginTwitter,
+}) => {
   const [selectedCurrency, setSelectedCurrency] = useState("USDT");
+  const [confirmado, setConfirmado] = useState(false);
+  const [agradecimiento, setAgradecimiento] = useState(false);
 
   return (
     <div className="relative bg-back w-full max-w-[700px] my-8 rounded-[18px] border-2 border-primary h-fit pb-12">
@@ -46,9 +56,56 @@ const BuyCocay = ({ setBuyCocay }) => {
           {/* Cuanto tiene de esa moneda? */}
           <CurrencyBalance selectedCurrency={selectedCurrency} />
           <SmartOrToken />
-          <Amount />
+          <Amount
+            loggedTwitter={loggedTwitter}
+            setLoggedTwitter={setLoggedTwitter}
+            setModalLoginTwitter={setModalLoginTwitter}
+            setConfirmado={setConfirmado}
+          />
         </div>
       </div>
+      {/* Este es el modal para que se logueen */}
+      {modalLoginTwitter && !loggedTwitter && (
+        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center items-center">
+          <LoginTwitterModal
+            loggedTwitter={loggedTwitter}
+            setLoggedTwitter={setLoggedTwitter}
+            setModalLoginTwitter={setModalLoginTwitter}
+          />
+        </div>
+      )}
+      {/* Este es el modal para confirmar la compra */}
+      {confirmado && (
+        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center items-center">
+          <div className="mt-12 w-full flex flex-col gap-[10px] items-center">
+            <div className="flex flex-col text-center">
+              <p className="text-xl font-semibold">Confirmar Compra?</p>
+              <p className="mt-[10px]">Monto de Compra: 200.002 USDT </p>
+            </div>
+
+            <button
+              onClick={() => {
+                setConfirmado(false);
+                setAgradecimiento(true);
+              }}
+              className="button-3d-1 "
+            >
+              CONFIRMAR
+            </button>
+          </div>
+        </div>
+      )}
+      {agradecimiento && (
+        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center items-center">
+          <AgradecimientoDeCompra
+            setAgradecimiento={setAgradecimiento}
+            loggedTwitter={loggedTwitter}
+            setLoggedTwitter={setLoggedTwitter}
+            modalLoginTwitter={modalLoginTwitter}
+            setModalLoginTwitter={setModalLoginTwitter}
+          />
+        </div>
+      )}
     </div>
   );
 };
