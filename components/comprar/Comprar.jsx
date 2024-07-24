@@ -11,6 +11,7 @@ import GenerateCode from "./modals/GenerateCode";
 import Stake from "./modals/Stake";
 import EarnCocays from "./modals/EarnCocays";
 import Teams from "./modals/Teams";
+import OfreceSwap from "./modals/OfreceSwap";
 
 // eslint-disable-next-line react/prop-types
 const Comprar = ({
@@ -36,6 +37,8 @@ const Comprar = ({
   const [modalEarnCocays, setModalEarnCocays] = useState(false);
   //Para modal de EARN COCAYS
   const [modalTeams, setModalTeams] = useState(false);
+  //Si detecta USDT, abre modal y ofrece hacer swap
+  const [detectoUSDT, setDetectoUSDT] = useState(true);
 
   return (
     <div className="w-full py-8 bg-black bg-opacity-80 border border-primary flex flex-col gap-[10px] items-center rounded-[18px] relative p-2 sm:p-4">
@@ -153,6 +156,11 @@ const Comprar = ({
       {modalTeams && (
         <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center">
           <Teams setModalTeams={setModalTeams} />
+        </div>
+      )}
+      {detectoUSDT && (
+        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center">
+          <OfreceSwap setDetectoUSDT={setDetectoUSDT} />
         </div>
       )}
     </div>
