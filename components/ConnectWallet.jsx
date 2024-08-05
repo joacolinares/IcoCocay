@@ -1,10 +1,10 @@
 import token from "../public/token.gif";
 import { IoCloseOutline } from "react-icons/io5";
-
-import { useState } from "react";
+import { ConnectWallet, useAddress} from "@thirdweb-dev/react";
+import { useEffect, useState } from "react";
 
 // eslint-disable-next-line react/prop-types
-const ConnectWallet = ({ setLoggedIn }) => {
+const ConnectWalletComp = ({ setLoggedIn }) => {
   //estados para manejar los modals de tutoriales
   const [tutoriales, setTutoriales] = useState(false);
   const [tutorialDonacion, setTutorialDonacion] = useState(false);
@@ -13,6 +13,18 @@ const ConnectWallet = ({ setLoggedIn }) => {
   const [loggedWallet, setLoggedWallet] = useState(false);
   // const [loggedX, setLoggedX] = useState(false);
 
+  const wallet = useAddress()
+  
+  useEffect(() => {
+    console.log(wallet)
+
+    if(wallet != undefined){
+      setLoggedWallet(true)
+    }
+
+  }, [wallet])
+  
+  
   return (
     <div className="w-full">
       <div className="w-full flex flex-col items-center gap-[20px]">
@@ -90,15 +102,15 @@ const ConnectWallet = ({ setLoggedIn }) => {
           <p className="text-xl font-semibold">
             Conectate con tu wallet favorita!
           </p>
-          <button
+          {/*<button
             onClick={() => setLoggedWallet(true)}
             className={`bg-white text-primary font-semibold rounded-[18px] px-4 py-2 flex gap-[10px] items-center border-2 ${
               loggedWallet ? "border-green-500" : "border-red-500"
             }`}
           >
             <p>Connect wallet</p>
-          </button>
-
+          </button>*/}
+          <ConnectWallet />
           <button
             onClick={() => {
               if (loggedWallet) {
@@ -116,4 +128,4 @@ const ConnectWallet = ({ setLoggedIn }) => {
   );
 };
 
-export default ConnectWallet;
+export default ConnectWalletComp;

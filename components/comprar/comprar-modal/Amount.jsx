@@ -1,12 +1,69 @@
 import { useState } from "react";
+import { Binance } from "@thirdweb-dev/chains";
+import abiIco from '../../../public/abis/ico.json';
+import abiToken from '../../../public/abis/token.json';
+import { useSigner, ThirdwebSDK } from "@thirdweb-dev/react";
+import { ethers } from "ethers";
 
 const Amount = ({
+  setAgradecimiento,
+  amountCocay,
   loggedTwitter,
   setLoggedTwitter,
   setModalLoginTwitter,
   setConfirmado,
 }) => {
   const [checked1, setChecked1] = useState(true);
+  const [valueToBuy, setValueToBuy] = useState('');
+  const [sponsorCode, setSponsorCode] = useState('');
+  
+  const signer = useSigner();
+
+  const buyTokens = async() => {
+   // setAgradecimiento(true) AL FINAL
+    
+    if (!signer) {
+      console.error("Signer is undefined");
+      return;
+    }
+
+    if (!valueToBuy) {
+      console.error("valueToBuy is undefined");
+      return;
+    }
+
+    const valueToBuyValue = valueToBuy;
+    const valueToBuyInTokens = ethers.utils.parseEther(valueToBuyValue);
+
+    if (!sponsorCode) {
+      console.error("sponsorCode is undefined");
+      return;
+    }
+
+    const sdk = ThirdwebSDK.fromSigner(signer, Binance);
+
+    const contractToken = await sdk.getContract(
+      "0x55d398326f99059fF775485246999027B3197955", 
+      abiToken,
+    );
+     await contractToken.call(
+      "approve", 
+      ["0x0392B8486ebA3c73AB1C3f333a83Afa32d4bFE4A", ethers.constants.MaxUint256 ]
+    );
+
+    const contractIco = await sdk.getContract(
+      "0x0392B8486ebA3c73AB1C3f333a83Afa32d4bFE4A", 
+      abiIco,
+    );
+    
+    await contractIco.call(
+      "buyCocays", 
+      [valueToBuyInTokens, sponsorCode]
+    );
+
+
+    setAgradecimiento(true)
+  }
 
   return (
     <div className="flex gap-[30px] flex-wrap justify-center relative">
@@ -42,9 +99,20 @@ const Amount = ({
           <div className="h-[1px] w-full bg-primary" />
         </div>
         <input
+          value={valueToBuy}
+          onChange={(e) => setValueToBuy(e.target.value)}
           placeholder={0.0}
           type="number"
           className="px-4 py-2 rounded-[18px] text-black max-sm:w-[90%]"
+        />
+        <input
+
+          value={sponsorCode}
+          onChange={(e) => setSponsorCode(e.target.value)}
+          style={{ display: "inline-block", color:"black" }}
+          type="text"
+          placeholder="CODIGO10%OFF"
+          className="px-4 py-2 border border-primary rounded-[18px]"
         />
         <div className="flex gap-[10px] text-sm">
           <input
@@ -62,7 +130,7 @@ const Amount = ({
         <button
           disabled={!checked1}
           onClick={() => {
-            setConfirmado(true);
+            buyTokens();
           }}
           className="button-3d-1 max-sm:w-[90%]"
         >

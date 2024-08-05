@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ConnectWallet from "./ConnectWallet";
+import ConnectWalletComp from "./ConnectWallet";
 import DonarOComprar from "./DonarOComprar";
 
 const Pasos = () => {
@@ -10,8 +10,11 @@ const Pasos = () => {
 
   return (
     <div className="text-white w-full h-full max-w-[1200px]">
-      {!loggedIn ? (
-        <ConnectWallet setLoggedIn={setLoggedIn} />
+      {!loggedIn ? (<>
+        
+        <ConnectWalletComp setLoggedIn={setLoggedIn} />
+      
+      </>
       ) : (
         <DonarOComprar
           loggedTwitter={loggedTwitter}

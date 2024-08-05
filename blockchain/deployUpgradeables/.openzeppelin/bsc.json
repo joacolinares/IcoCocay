@@ -1,0 +1,449 @@
+{
+  "manifestVersion": "3.2",
+  "proxies": [
+    {
+      "address": "0x0392B8486ebA3c73AB1C3f333a83Afa32d4bFE4A",
+      "txHash": "0x72ddf802ba3f7696a871facdb4f3e2eb9f49fe1650ef301abafe07c59be6188b",
+      "kind": "uups"
+    }
+  ],
+  "impls": {
+    "bc5983e17396fb0412d5f2415f566d99cb5664bc285ef1df489391c8016ae32e": {
+      "address": "0x8e901f87339151DE4892b3BAf1f6846614aE640E",
+      "txHash": "0x7d5a2399fe5fbf9369612dc9e3a8b01a3f6fbe908661c23a53dc1a81b4352caa",
+      "layout": {
+        "solcVersion": "0.8.24",
+        "storage": [
+          {
+            "label": "USDT",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_contract(IERC20)2215",
+            "contract": "IcoCocay",
+            "src": "contracts/Ico2.sol:11"
+          },
+          {
+            "label": "CocayToken",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_contract(IERC20)2215",
+            "contract": "IcoCocay",
+            "src": "contracts/Ico2.sol:12"
+          },
+          {
+            "label": "CocayWallet",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_address",
+            "contract": "IcoCocay",
+            "src": "contracts/Ico2.sol:13"
+          },
+          {
+            "label": "AiSolvesAddress",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_address",
+            "contract": "IcoCocay",
+            "src": "contracts/Ico2.sol:14"
+          },
+          {
+            "label": "feeWallet",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_address",
+            "contract": "IcoCocay",
+            "src": "contracts/Ico2.sol:15"
+          },
+          {
+            "label": "cantVendidos",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_uint256",
+            "contract": "IcoCocay",
+            "src": "contracts/Ico2.sol:19"
+          },
+          {
+            "label": "cantInv",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_uint256",
+            "contract": "IcoCocay",
+            "src": "contracts/Ico2.sol:21"
+          },
+          {
+            "label": "cantHolders",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_uint256",
+            "contract": "IcoCocay",
+            "src": "contracts/Ico2.sol:22"
+          },
+          {
+            "label": "sponsorCodes",
+            "offset": 0,
+            "slot": "8",
+            "type": "t_mapping(t_string_memory_ptr,t_address)",
+            "contract": "IcoCocay",
+            "src": "contracts/Ico2.sol:48"
+          },
+          {
+            "label": "sponsorCodesOfWallet",
+            "offset": 0,
+            "slot": "9",
+            "type": "t_mapping(t_address,t_string_storage)",
+            "contract": "IcoCocay",
+            "src": "contracts/Ico2.sol:49"
+          },
+          {
+            "label": "haveSponsorCode",
+            "offset": 0,
+            "slot": "10",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "IcoCocay",
+            "src": "contracts/Ico2.sol:50"
+          },
+          {
+            "label": "parent",
+            "offset": 0,
+            "slot": "11",
+            "type": "t_mapping(t_address,t_address)",
+            "contract": "IcoCocay",
+            "src": "contracts/Ico2.sol:51"
+          },
+          {
+            "label": "amountRefferal",
+            "offset": 0,
+            "slot": "12",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "IcoCocay",
+            "src": "contracts/Ico2.sol:52"
+          },
+          {
+            "label": "compras",
+            "offset": 0,
+            "slot": "13",
+            "type": "t_mapping(t_address,t_array(t_struct(Compra)2745_storage)dyn_storage)",
+            "contract": "IcoCocay",
+            "src": "contracts/Ico2.sol:53"
+          },
+          {
+            "label": "recibos",
+            "offset": 0,
+            "slot": "14",
+            "type": "t_mapping(t_address,t_array(t_struct(Recibo)2754_storage)dyn_storage)",
+            "contract": "IcoCocay",
+            "src": "contracts/Ico2.sol:54"
+          },
+          {
+            "label": "porcentaje",
+            "offset": 0,
+            "slot": "15",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "IcoCocay",
+            "src": "contracts/Ico2.sol:55"
+          },
+          {
+            "label": "porcentajeAcordado",
+            "offset": 0,
+            "slot": "16",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_uint256))",
+            "contract": "IcoCocay",
+            "src": "contracts/Ico2.sol:56"
+          },
+          {
+            "label": "arbol",
+            "offset": 0,
+            "slot": "17",
+            "type": "t_array(t_struct(Arbol)2769_storage)dyn_storage",
+            "contract": "IcoCocay",
+            "src": "contracts/Ico2.sol:57"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_bytes32": {
+            "label": "bytes32",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_bytes32,t_struct(RoleData)25_storage)": {
+            "label": "mapping(bytes32 => struct AccessControlUpgradeable.RoleData)",
+            "numberOfBytes": "32"
+          },
+          "t_struct(AccessControlStorage)35_storage": {
+            "label": "struct AccessControlUpgradeable.AccessControlStorage",
+            "members": [
+              {
+                "label": "_roles",
+                "type": "t_mapping(t_bytes32,t_struct(RoleData)25_storage)",
+                "offset": 0,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_struct(InitializableStorage)257_storage": {
+            "label": "struct Initializable.InitializableStorage",
+            "members": [
+              {
+                "label": "_initialized",
+                "type": "t_uint64",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "_initializing",
+                "type": "t_bool",
+                "offset": 8,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_struct(OwnableStorage)178_storage": {
+            "label": "struct OwnableUpgradeable.OwnableStorage",
+            "members": [
+              {
+                "label": "_owner",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_struct(RoleData)25_storage": {
+            "label": "struct AccessControlUpgradeable.RoleData",
+            "members": [
+              {
+                "label": "hasRole",
+                "type": "t_mapping(t_address,t_bool)",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "adminRole",
+                "type": "t_bytes32",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_uint64": {
+            "label": "uint64",
+            "numberOfBytes": "8"
+          },
+          "t_array(t_struct(Arbol)2769_storage)dyn_storage": {
+            "label": "struct IcoCocay.Arbol[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_struct(Compra)2745_storage)dyn_storage": {
+            "label": "struct IcoCocay.Compra[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_struct(Recibo)2754_storage)dyn_storage": {
+            "label": "struct IcoCocay.Recibo[]",
+            "numberOfBytes": "32"
+          },
+          "t_contract(IERC20)2215": {
+            "label": "contract IERC20",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_address,t_address)": {
+            "label": "mapping(address => address)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_array(t_struct(Compra)2745_storage)dyn_storage)": {
+            "label": "mapping(address => struct IcoCocay.Compra[])",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_array(t_struct(Recibo)2754_storage)dyn_storage)": {
+            "label": "mapping(address => struct IcoCocay.Recibo[])",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_uint256))": {
+            "label": "mapping(address => mapping(address => uint256))",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_string_storage)": {
+            "label": "mapping(address => string)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_string_memory_ptr,t_address)": {
+            "label": "mapping(string => address)",
+            "numberOfBytes": "32"
+          },
+          "t_string_memory_ptr": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_struct(Arbol)2769_storage": {
+            "label": "struct IcoCocay.Arbol",
+            "members": [
+              {
+                "label": "invitado",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "referido",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "compra",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "porcentaje",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "ganancia",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "codRef",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "rep",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "6"
+              }
+            ],
+            "numberOfBytes": "224"
+          },
+          "t_struct(Compra)2745_storage": {
+            "label": "struct IcoCocay.Compra",
+            "members": [
+              {
+                "label": "cantidad",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "timestamp",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "rep",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "2"
+              }
+            ],
+            "numberOfBytes": "96"
+          },
+          "t_struct(Recibo)2754_storage": {
+            "label": "struct IcoCocay.Recibo",
+            "members": [
+              {
+                "label": "comprador",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "cantidad",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "porcentaje",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "rep",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "3"
+              }
+            ],
+            "numberOfBytes": "128"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        },
+        "namespaces": {
+          "erc7201:openzeppelin.storage.Ownable": [
+            {
+              "contract": "OwnableUpgradeable",
+              "label": "_owner",
+              "type": "t_address",
+              "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:24",
+              "offset": 0,
+              "slot": "0"
+            }
+          ],
+          "erc7201:openzeppelin.storage.AccessControl": [
+            {
+              "contract": "AccessControlUpgradeable",
+              "label": "_roles",
+              "type": "t_mapping(t_bytes32,t_struct(RoleData)25_storage)",
+              "src": "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:61",
+              "offset": 0,
+              "slot": "0"
+            }
+          ],
+          "erc7201:openzeppelin.storage.Initializable": [
+            {
+              "contract": "Initializable",
+              "label": "_initialized",
+              "type": "t_uint64",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:69",
+              "offset": 0,
+              "slot": "0"
+            },
+            {
+              "contract": "Initializable",
+              "label": "_initializing",
+              "type": "t_bool",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:73",
+              "offset": 8,
+              "slot": "0"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

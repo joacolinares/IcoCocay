@@ -2,7 +2,7 @@ import { useState } from "react";
 import token from "../public/token.gif";
 import Comprar from "./comprar/Comprar";
 import Donar from "./Donar";
-
+import {  useAddress} from "@thirdweb-dev/react";
 const DonarOComprar = ({
   loggedTwitter,
   setLoggedTwitter,
@@ -11,6 +11,8 @@ const DonarOComprar = ({
 }) => {
   const [comprar, setComprar] = useState(false);
   const [donar, setDonar] = useState(false);
+
+  const wallet = useAddress()
 
   return (
     <div>
@@ -22,8 +24,8 @@ const DonarOComprar = ({
             className="object-cover max-w-[200px] md:max-w-[500px]"
           />
           <p>
-            Bienvenid@{" "}
-            <span className="text-primary font-semibold">Pepit@!</span>
+            Bienvenido {" "}
+            <span className="text-primary font-semibold">{`${wallet.slice(0, 4)}...${wallet.slice(-4)}`}</span>
           </p>
           <div className="flex gap-[20px] flex-wrap mt-[20px]">
             <button onClick={() => setDonar(true)} className="button-3d-2">

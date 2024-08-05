@@ -8,6 +8,8 @@ import SmartOrToken from "./SmartOrToken";
 import Amount from "./Amount";
 import LoginTwitterModal from "../../LoginTwitterModal";
 import AgradecimientoDeCompra from "./AgradecimientoDeCompra";
+import { ethers } from "ethers"; // Import ethers
+import { ThirdwebSDK } from "@thirdweb-dev/react"; // Import Thirdweb SDK
 
 // eslint-disable-next-line react/prop-types
 const BuyCocay = ({
@@ -20,6 +22,9 @@ const BuyCocay = ({
   const [selectedCurrency, setSelectedCurrency] = useState("USDT");
   const [confirmado, setConfirmado] = useState(false);
   const [agradecimiento, setAgradecimiento] = useState(false);
+
+
+
 
   return (
     <div className="relative bg-back w-full max-w-[700px] my-8 rounded-[18px] border-2 border-primary h-fit pb-12">
@@ -39,12 +44,9 @@ const BuyCocay = ({
           className="object-cover max-w-[100px]"
         />
         <div className="w-full flex flex-col items-center gap-[15px]">
-          <button className="px-4 py-2 border border-primary rounded-[18px]">
-            Codigo de referido
-          </button>
-          <button className="bg-white text-black px-4 py-2 rounded-[18px]">
+         {/* <button className="bg-white text-black px-4 py-2 rounded-[18px]">
             Hasta agotar el suministro
-          </button>
+          </button>*/}
           <p>USDT Recaudados: 999/22,000,000</p>
           {/* Precio cocay */}
           <PrecioCocay />
@@ -55,8 +57,9 @@ const BuyCocay = ({
           />
           {/* Cuanto tiene de esa moneda? */}
           <CurrencyBalance selectedCurrency={selectedCurrency} />
-          <SmartOrToken />
+         {/* <SmartOrToken />*/}
           <Amount
+            setAgradecimiento={setAgradecimiento}
             loggedTwitter={loggedTwitter}
             setLoggedTwitter={setLoggedTwitter}
             setModalLoginTwitter={setModalLoginTwitter}

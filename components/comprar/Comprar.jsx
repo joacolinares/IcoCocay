@@ -158,11 +158,11 @@ const Comprar = ({
           <Teams setModalTeams={setModalTeams} />
         </div>
       )}
-      {detectoUSDT && (
+      {/*detectoUSDT && (
         <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center">
           <OfreceSwap setDetectoUSDT={setDetectoUSDT} />
         </div>
-      )}
+      )*/}
     </div>
   );
 };
