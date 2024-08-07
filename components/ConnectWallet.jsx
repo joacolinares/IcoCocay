@@ -1,6 +1,7 @@
 import token from "../public/token.gif";
 import { IoCloseOutline } from "react-icons/io5";
 import { ConnectWallet, useAddress} from "@thirdweb-dev/react";
+import { ConnectButton} from "thirdweb-dev/react";
 import { useEffect, useState } from "react";
 
 // eslint-disable-next-line react/prop-types
@@ -24,7 +25,7 @@ const ConnectWalletComp = ({ setLoggedIn }) => {
 
   }, [wallet])
   
-  
+
   return (
     <div className="w-full">
       <div className="w-full flex flex-col items-center gap-[20px]">
@@ -111,6 +112,7 @@ const ConnectWalletComp = ({ setLoggedIn }) => {
             <p>Connect wallet</p>
           </button>*/}
           <ConnectWallet />
+        
           <button
             onClick={() => {
               if (loggedWallet) {
