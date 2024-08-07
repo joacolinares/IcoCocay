@@ -1,7 +1,6 @@
 import token from "../public/token.gif";
 import { IoCloseOutline } from "react-icons/io5";
 import { ConnectWallet, useAddress} from "@thirdweb-dev/react";
-import { ConnectButton} from "thirdweb-dev/react";
 import { useEffect, useState } from "react";
 
 // eslint-disable-next-line react/prop-types
