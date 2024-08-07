@@ -136,6 +136,9 @@ const Amount = ({
         >
           Confirmar
         </button>
+          <br />
+          {/*<button onClick={() =>{setAgradecimiento(true)}}>test</button>*/}
+
       </div>
     </div>
   );

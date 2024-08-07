@@ -1,7 +1,14 @@
 import token from "../public/token.gif";
 import { IoCloseOutline } from "react-icons/io5";
 import { ConnectWallet, useAddress} from "@thirdweb-dev/react";
+import { ThirdwebProvider, ConnectButton } from "thirdweb/react";
 import { useEffect, useState } from "react";
+import { createThirdwebClient } from "thirdweb";
+import { inAppWallet } from "thirdweb/wallets";
+
+
+
+
 
 // eslint-disable-next-line react/prop-types
 const ConnectWalletComp = ({ setLoggedIn }) => {
@@ -23,7 +30,6 @@ const ConnectWalletComp = ({ setLoggedIn }) => {
     }
 
   }, [wallet])
-  
 
   return (
     <div className="w-full">
@@ -111,6 +117,8 @@ const ConnectWalletComp = ({ setLoggedIn }) => {
             <p>Connect wallet</p>
           </button>*/}
           <ConnectWallet />
+          <br />
+          
         
           <button
             onClick={() => {

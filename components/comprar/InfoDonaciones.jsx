@@ -79,10 +79,10 @@ const InfoDonaciones = () => {
             <p className="hidden lg:block">Wallet</p>
             <FaWallet />
           </div>
-          <div className="flex gap-[5px] items-center">
+         {/* <div className="flex gap-[5px] items-center">
             <p className="hidden lg:block">Share</p>
             <FaShareAlt />
-          </div>
+          </div>*/}
         </div>
         {donaciones.length > 0 ? (
           donaciones.map((donacion, index) => (

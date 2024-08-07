@@ -8,6 +8,9 @@ const AgradecimientoDeCompra = ({
   modalLoginTwitter,
   setModalLoginTwitter,
 }) => {
+  const tweetMessage = "¡Gracias por ser parte de Cocay Token!";
+  const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetMessage)}`;
+
   return (
     <div className="relative bg-back w-full max-w-[700px] my-8 rounded-[18px] border-2 border-primary h-fit pb-12 p-2">
       <button
@@ -40,12 +43,12 @@ const AgradecimientoDeCompra = ({
               if (!loggedTwitter) {
                 setModalLoginTwitter(true);
               } else {
-                //Ir a twitter con el mensaje de donacion y entrar a el dashboard de compra de cocays
+                window.open(tweetUrl, "_blank");
               }
             }}
             className="button-3d-1 "
           >
-            Twittear Donación
+            Twittear
           </button>
         </div>
       </div>

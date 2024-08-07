@@ -97,6 +97,7 @@ const BuyCocay = ({
               CONFIRMAR
             </button>
           </div>
+          
         </div>
       )}
       {agradecimiento && (

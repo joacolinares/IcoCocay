@@ -283,7 +283,7 @@
   resolved "https://registry.yarnpkg.com/@emotion/hash/-/hash-0.9.2.tgz#ff9221b9f58b4dfe61e619a7788734bd63f6898b"
   integrity sha512-MyqliTZGuOm3+5ZRSaaBGP3USLw6+EGykkwZns2EPC5g8jJ4z9OrdZY9apkl3+UP9+sdz76YYkwCKP5gh8iY3g==
 
-"@emotion/is-prop-valid@^1.2.1":
+"@emotion/is-prop-valid@^1.2.1", "@emotion/is-prop-valid@^1.2.2":
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-1.3.0.tgz#bd84ba972195e8a2d42462387581560ef780e4e2"
   integrity sha512-SHetuSLvJDzuNbOdtPVbq6yMMMlLoW5Q94uDqJZqy50gcmAjxFkVqmzqSGEFq9gT2iMuIeKV1PXVWmvUhuZLlQ==
@@ -323,7 +323,7 @@
     "@emotion/weak-memoize" "^0.4.0"
     hoist-non-react-statics "^3.3.1"
 
-"@emotion/serialize@^1.1.1", "@emotion/serialize@^1.1.2", "@emotion/serialize@^1.1.3", "@emotion/serialize@^1.2.0", "@emotion/serialize@^1.3.0":
+"@emotion/serialize@^1.1.1", "@emotion/serialize@^1.1.2", "@emotion/serialize@^1.1.3", "@emotion/serialize@^1.1.4", "@emotion/serialize@^1.2.0", "@emotion/serialize@^1.3.0":
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/@emotion/serialize/-/serialize-1.3.0.tgz#e07cadfc967a4e7816e0c3ffaff4c6ce05cb598d"
   integrity sha512-jACuBa9SlYajnpIVXB+XOXnfJHyckDfe6fOpORIM6yhBDlqGuExvDdZYHDQGoDf3bZXGv7tNr+LpLjJqiEQ6EA==
@@ -348,6 +348,18 @@
     "@emotion/babel-plugin" "^11.11.0"
     "@emotion/is-prop-valid" "^1.2.1"
     "@emotion/serialize" "^1.1.2"
+    "@emotion/use-insertion-effect-with-fallbacks" "^1.0.1"
+    "@emotion/utils" "^1.2.1"
+
+"@emotion/styled@11.11.5":
+  version "11.11.5"
+  resolved "https://registry.yarnpkg.com/@emotion/styled/-/styled-11.11.5.tgz#0c5c8febef9d86e8a926e663b2e5488705545dfb"
+  integrity sha512-/ZjjnaNKvuMPxcIiUkf/9SHoG4Q196DRl1w82hQ3WCsjo1IUR8uaGWrC6a87CrYAW0Kb/pK7hk8BnLgLRi9KoQ==
+  dependencies:
+    "@babel/runtime" "^7.18.3"
+    "@emotion/babel-plugin" "^11.11.0"
+    "@emotion/is-prop-valid" "^1.2.2"
+    "@emotion/serialize" "^1.1.4"
     "@emotion/use-insertion-effect-with-fallbacks" "^1.0.1"
     "@emotion/utils" "^1.2.1"
 
@@ -1677,7 +1689,7 @@
     aria-hidden "^1.1.1"
     react-remove-scroll "2.5.5"
 
-"@radix-ui/react-dialog@^1.0.5":
+"@radix-ui/react-dialog@1.1.1", "@radix-ui/react-dialog@^1.0.5":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-dialog/-/react-dialog-1.1.1.tgz#4906507f7b4ad31e22d7dad69d9330c87c431d44"
   integrity sha512-zysS+iU4YP3STKNS6USvFVqI4qqx8EpiwmT5TuCApVEBca+eRCbONi4EgzfNSuVnOXvC5UPHHMjs8RXO6DH9Bg==
@@ -1941,7 +1953,7 @@
     "@radix-ui/react-use-controllable-state" "1.0.1"
     "@radix-ui/react-visually-hidden" "1.0.3"
 
-"@radix-ui/react-tooltip@^1.0.7":
+"@radix-ui/react-tooltip@1.1.2", "@radix-ui/react-tooltip@^1.0.7":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-tooltip/-/react-tooltip-1.1.2.tgz#c42db2ffd7dcc6ff3d65407c8cb70490288f518d"
   integrity sha512-9XRsLwe6Yb9B/tlnYCPVUd/TFS4J7HuOZW345DCeC6vKIxQGMZdx21RK4VoZauPD5frgkXTYVS5y90L+3YBn4w==
@@ -3047,7 +3059,7 @@
     "@walletconnect/utils" "2.12.2"
     events "^3.3.0"
 
-"@walletconnect/sign-client@2.14.0", "@walletconnect/sign-client@^2.13.1":
+"@walletconnect/sign-client@2.14.0", "@walletconnect/sign-client@^2.13.1", "@walletconnect/sign-client@^2.13.3":
   version "2.14.0"
   resolved "https://registry.yarnpkg.com/@walletconnect/sign-client/-/sign-client-2.14.0.tgz#36533ef0976a869d815624217527482c90937fc8"
   integrity sha512-UrB3S3eLjPYfBLCN3WJ5u7+WcZ8kFMe/QIDqLf76Jk6TaLwkSUy563LvnSw4KW/kA+/cY1KBSdUDfX1tzYJJXg==
@@ -3181,6 +3193,11 @@ abitype@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/abitype/-/abitype-1.0.0.tgz#237176dace81d90d018bebf3a45cb42f2a2d9e97"
   integrity sha512-NMeMah//6bJ56H5XRj8QCV4AwuW6hB6zqz2LnhhLdcWVQOsXki6/Pn3APeqxCma62nXIcmZWdu1DlHWS74umVQ==
+
+abitype@1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/abitype/-/abitype-1.0.5.tgz#29d0daa3eea867ca90f7e4123144c1d1270774b6"
+  integrity sha512-YzDhti7cjlfaBhHutMaboYB21Ha3rXR9QTkNJFzYC4kC8YclaiwPBBBJY8ejFdu2wnJeZCVZSMlQJ7fi8S6hsw==
 
 abort-controller@^3.0.0:
   version "3.0.0"
@@ -7737,6 +7754,34 @@ thirdweb@5.29.6:
     uqr "0.1.2"
     viem "2.13.7"
 
+thirdweb@^5.44.1:
+  version "5.44.1"
+  resolved "https://registry.yarnpkg.com/thirdweb/-/thirdweb-5.44.1.tgz#d03f03f9c50ff911f653554b8ac6a1559b45a7e2"
+  integrity sha512-RsxpYYjcC2ujabN7ycrx05UKmaDXMwf0IZfNil9JVcx5PTEec+goJ0qIJ8E3Os8xNLVP/QizqVBbQDA3oXWMzg==
+  dependencies:
+    "@coinbase/wallet-sdk" "4.0.3"
+    "@emotion/react" "11.11.4"
+    "@emotion/styled" "11.11.5"
+    "@google/model-viewer" "2.1.1"
+    "@noble/curves" "1.4.0"
+    "@noble/hashes" "1.4.0"
+    "@passwordless-id/webauthn" "^1.6.1"
+    "@radix-ui/react-dialog" "1.1.1"
+    "@radix-ui/react-focus-scope" "1.1.0"
+    "@radix-ui/react-icons" "1.3.0"
+    "@radix-ui/react-tooltip" "1.1.2"
+    "@tanstack/react-query" "5.29.2"
+    "@walletconnect/ethereum-provider" "2.12.2"
+    "@walletconnect/sign-client" "^2.13.3"
+    abitype "1.0.5"
+    fast-text-encoding "^1.0.6"
+    fuse.js "7.0.0"
+    input-otp "^1.2.4"
+    mipd "0.0.7"
+    node-libs-browser "2.2.1"
+    uqr "0.1.2"
+    viem "2.17.10"
+
 thread-stream@^0.15.1:
   version "0.15.2"
   resolved "https://registry.yarnpkg.com/thread-stream/-/thread-stream-0.15.2.tgz#fb95ad87d2f1e28f07116eb23d85aba3bc0425f4"
@@ -8135,6 +8180,20 @@ viem@2.13.7:
     isows "1.0.4"
     ws "8.13.0"
 
+viem@2.17.10:
+  version "2.17.10"
+  resolved "https://registry.yarnpkg.com/viem/-/viem-2.17.10.tgz#0b72bc8f8b86c11d2ace03035e5c39123c9dec55"
+  integrity sha512-nubTeRBI3wsmYGemlg9PsbhunTSJSYUlq8VjzIQkbowCSPSd1bqzVeUU0qEOXsGtgRiFfBzXkkxFknZtBOAx/Q==
+  dependencies:
+    "@adraffy/ens-normalize" "1.10.0"
+    "@noble/curves" "1.4.0"
+    "@noble/hashes" "1.4.0"
+    "@scure/bip32" "1.4.0"
+    "@scure/bip39" "1.3.0"
+    abitype "1.0.5"
+    isows "1.0.4"
+    ws "8.17.1"
+
 vite@^5.3.1:
   version "5.3.5"
   resolved "https://registry.yarnpkg.com/vite/-/vite-5.3.5.tgz#b847f846fb2b6cb6f6f4ed50a830186138cb83d8"
@@ -8496,6 +8555,11 @@ ws@8.13.0:
   version "8.13.0"
   resolved "https://registry.yarnpkg.com/ws/-/ws-8.13.0.tgz#9a9fb92f93cf41512a0735c8f4dd09b8a1211cd0"
   integrity sha512-x9vcZYTrFPC7aSIbj7sRCYo7L/Xb8Iy+pW0ng0wt2vCJv7M9HOMy0UoN3rr+IFC7hb7vXoqS+P9ktyLLLhO+LA==
+
+ws@8.17.1:
+  version "8.17.1"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-8.17.1.tgz#9293da530bb548febc95371d90f9c878727d919b"
+  integrity sha512-6XQFvXTkbfUOZOKKILFG1PDK2NDQs4azKQl26T0YS5CxqWLgXajbPZ+h4gZekJyRqFU8pvnbAbbs/3TgRPy+GQ==
 
 ws@8.9.0:
   version "8.9.0"

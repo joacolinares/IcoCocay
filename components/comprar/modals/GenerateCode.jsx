@@ -93,7 +93,7 @@ const GenerateCode = ({ setModalGenerateCode }) => {
         />
         </div>
           </div>
-          <label>Cantidad disponible a repartir:{cantReferral.status &&cantReferral.data}</label>
+          <label>Cantidad disponible a repartir: {cantReferral.status &&cantReferral.data / 10} %</label>
           <Web3Button
             contractAddress="0xB02d23e27881fB6eAc740BDfA1AB81FF908435a1" // Your smart contract address
             contractAbi={abiIco}
