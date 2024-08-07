@@ -13,6 +13,7 @@ import { ThirdwebSDK } from "@thirdweb-dev/react"; // Import Thirdweb SDK
 
 // eslint-disable-next-line react/prop-types
 const BuyCocay = ({
+  cantInv,
   setBuyCocay,
   loggedTwitter,
   setLoggedTwitter,
@@ -47,7 +48,7 @@ const BuyCocay = ({
          {/* <button className="bg-white text-black px-4 py-2 rounded-[18px]">
             Hasta agotar el suministro
           </button>*/}
-          <p>USDT Recaudados: 999/22,000,000</p>
+          <p>USDT Recaudados: {cantInv}/22,000,000</p>
           {/* Precio cocay */}
           <PrecioCocay />
           {/* Con que moneda queres pagar? */}

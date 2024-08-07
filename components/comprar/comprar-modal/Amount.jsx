@@ -48,11 +48,11 @@ const Amount = ({
     );
      await contractToken.call(
       "approve", 
-      ["0x0392B8486ebA3c73AB1C3f333a83Afa32d4bFE4A", ethers.constants.MaxUint256 ]
+      ["0xB02d23e27881fB6eAc740BDfA1AB81FF908435a1", ethers.constants.MaxUint256 ]
     );
 
     const contractIco = await sdk.getContract(
-      "0x0392B8486ebA3c73AB1C3f333a83Afa32d4bFE4A", 
+      "0xB02d23e27881fB6eAc740BDfA1AB81FF908435a1", 
       abiIco,
     );
     

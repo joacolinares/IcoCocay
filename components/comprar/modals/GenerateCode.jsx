@@ -1,9 +1,49 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { Web3Button} from "@thirdweb-dev/react";
+import abiIco from '../../../public/abis/ico.json';
+import { Binance } from "@thirdweb-dev/chains";
+import { useSigner, ThirdwebSDK,useAddress } from "@thirdweb-dev/react";
+
+
 
 // eslint-disable-next-line react/prop-types
 const GenerateCode = ({ setModalGenerateCode }) => {
   const [siguiente, setSiguiente] = useState(false);
+  const [name, setName] = useState('');
+  const [refferal, setRefferal] = useState('');
+  const [amount, setAmount] = useState('');
+  const [cantReferral, setCantReferral] = useState({
+    data: 0,
+    status: false
+  })
+  const signer = useSigner() 
+  const wallet = useAddress()
+
+
+
+  const loadInfo = async() =>{
+    const sdk = ThirdwebSDK.fromSigner(signer, Binance);
+    const contractCocay = await sdk.getContract(
+      "0xB02d23e27881fB6eAc740BDfA1AB81FF908435a1", 
+      abiIco,
+    );
+    const porcentaje = await contractCocay.call(
+      "porcentaje", 
+      [wallet]
+    );
+    console.log(porcentaje)
+
+    setCantReferral({
+      data: parseInt(porcentaje._hex,16),
+      status:true
+    })
+
+  }
+  useEffect(() => {
+    loadInfo()
+  }, [])
+  
 
   return (
     <div className="relative bg-back w-full max-w-[700px] my-8 rounded-[18px] border-2 border-primary h-fit pb-12 p-2">
@@ -19,66 +59,61 @@ const GenerateCode = ({ setModalGenerateCode }) => {
       {!siguiente ? (
         <div className="mt-12 w-full flex flex-col gap-[10px] items-center">
           <div className="flex flex-col">
-            <label>Nickname:</label>
-            <input
-              type="text"
-              disabled
-              defaultValue={"pepe"}
-              className="rounded-[18px] p-2 text-white border border-orange-500 bg-black"
-            />
-          </div>
           <div className="flex flex-col">
-            <label>Wallet:</label>
-            <input
-              type="text"
-              disabled
-              defaultValue={"0x1234567890abcdef1234567890abcdef12345678"}
-              className="rounded-[18px] p-2 text-white border border-orange-500 bg-black"
-            />
+          <label>Nuevo codigo para el referido:</label>
+            
+          <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder={"Codigo"}
+          type="text"
+          className="rounded-[18px] p-2 text-white border border-orange-500 bg-black"
+        />
+        </div>
+        <br />
+        <div className="flex flex-col">
+        <label>Wallet del referido:</label>
+          <input
+          value={refferal}
+          onChange={(e) => setRefferal(e.target.value)}
+          placeholder={"0x123342fv23"}
+          type="text"
+          className="rounded-[18px] p-2 text-white border border-orange-500 bg-black"
+        />
+        </div>
+        <br />
+        <div className="flex flex-col">
+        <label>Porcentaje a repartir:</label>
+          <input
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          placeholder={"40"}
+          type="text"
+          className="rounded-[18px] p-2 text-white border border-orange-500 bg-black"
+        />
+        </div>
           </div>
-          <div className="flex flex-col">
-            <label>Porcentaje a repartir:</label>
-            <input
-              type="number"
-              defaultValue={6}
-              className="rounded-[18px] p-2 text-white border border-orange-500 bg-black"
-              disabled
-            />
-          </div>
-          <div className="flex flex-col">
-            <label>New User:</label>
-            <input
-              type="text"
-              defaultValue={12}
-              className="rounded-[18px] p-2 text-white border border-orange-500 bg-black"
-            />
-          </div>
-          <div className="flex flex-col">
-            <label>
-              <b>Wallet USDT BNB</b>
-              <br></br> (Aqui pega la wallet de tu asociado)
-            </label>
-            <input
-              type="text"
-              defaultValue={12}
-              className="rounded-[18px] p-2 text-white border border-orange-500 bg-black"
-            />
-          </div>
-          <div className="flex flex-col">
-            <label>
-              <b>Porcentaje:</b>
-              <br></br> (Este es el porcentaje que le cedes)
-            </label>
-
-            <input
-              type="number"
-              defaultValue={6}
-              className="rounded-[18px] p-2 text-white border border-orange-500 bg-black"
-            />
-          </div>
-          <button onClick={() => setSiguiente(true)} className="button-3d-1">
+          <label>Cantidad disponible a repartir:{cantReferral.status &&cantReferral.data}</label>
+          <Web3Button
+            contractAddress="0xB02d23e27881fB6eAc740BDfA1AB81FF908435a1" // Your smart contract address
+            contractAbi={abiIco}
+            action={async (contract) => {
+              console.log(name,refferal,amount)
+              await contract.call(
+                "addSponsor", 
+                [name,refferal,amount]
+              );
+            }}
+            onSuccess={() =>{alert("TODO BIEN")}
+              
+            }
+            onError={()=>{console.log("ERROR")}}
+          >
+            Crear Código
+          </Web3Button>
+          {/*<button onClick={() => setSiguiente(true)} className="button-3d-1">
             Siguiente
-          </button>
+          </button>*/}
         </div>
       ) : (
         <div className="mt-12 w-full flex flex-col gap-[10px] items-center">
@@ -105,6 +140,7 @@ const GenerateCode = ({ setModalGenerateCode }) => {
           >
             GENERAR
           </button>
+          
         </div>
       )}
     </div>

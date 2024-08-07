@@ -4,6 +4,7 @@ import { GiDiploma } from "react-icons/gi";
 import { IoMdOpen } from "react-icons/io";
 
 const CocayInfo = ({
+  balanceCocay,
   yaCompro,
   setModalGenerateCode,
   setModalStake,
@@ -21,18 +22,18 @@ const CocayInfo = ({
       )}
       <div className="flex flex-col gap-[10px]">
         <div className="flex gap-[10px] items-center">
-          <p>Cocay Token: 10000</p>
+          <p>Cocay Token: {balanceCocay}</p>
           <img src={token} alt="Token Gif" className="object-cover w-[35px]" />
         </div>
-        <div className="flex gap-[10px] items-center">
+        {/*<div className="flex gap-[10px] items-center">
           <p>NFTs: 1</p>
           <GiDiploma className="text-primary text-3xl" />
           <IoMdOpen className="text-white text-3xl" />
-        </div>
-        <div className="flex gap-[10px] items-center">
+        </div>*/}
+        {/*<div className="flex gap-[10px] items-center">
           <p>Stake Time Remind:</p>
-        </div>
-        <div className="flex gap-[10px] items-center">
+        </div>*/}
+       {/* <div className="flex gap-[10px] items-center">
           <div className="w-full mt-[20px] flex flex-wrap justify-center items-center gap-[5px]">
             <button
               onClick={() => setModalEarnCocays(true)}
@@ -43,17 +44,17 @@ const CocayInfo = ({
             <button onClick={() => setModalStake(true)} className="button-3d-2">
               STAKE
             </button>
-            {/* <button onClick={() => setModalTeams(true)} className="button-3d-2">
+            <button onClick={() => setModalTeams(true)} className="button-3d-2">
               EQUIPOS
-            </button> */}
-            {/* <button
+            </button> 
+           <button
               onClick={() => setModalGenerateCode(true)}
               className="button-3d-2"
             >
               GENERAR CÓDIGO
-            </button> */}
+            </button> 
           </div>
-        </div>
+        </div>*/}
       </div>
     </div>
   );

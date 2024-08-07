@@ -3,7 +3,7 @@ import { FaCopy } from "react-icons/fa";
 import UserInfo from "./UserInfo";
 import CocayInfo from "./CocayInfo";
 import Camaras from "./modals/Camaras";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BuyCocay from "./comprar-modal/BuyCocay";
 import DonationsOrTransactions from "./DonationsOrTransactions";
 import PeopleTransactions from "./PeopleTransactions";
@@ -12,8 +12,12 @@ import Stake from "./modals/Stake";
 import EarnCocays from "./modals/EarnCocays";
 import Teams from "./modals/Teams";
 import OfreceSwap from "./modals/OfreceSwap";
+import { useAddress, ThirdwebSDK, useSigner } from "@thirdweb-dev/react";
+import abiToken from '../../public/abis/token.json';
+import { Binance } from "@thirdweb-dev/chains";
+import { ethers } from "ethers";
+import abiIco from '../../public/abis/ico.json';
 
-// eslint-disable-next-line react/prop-types
 const Comprar = ({
   setComprar,
   setDonar,
@@ -22,48 +26,115 @@ const Comprar = ({
   modalLoginTwitter,
   setModalLoginTwitter,
 }) => {
-  //Si alguna vez compro, es true
-  // eslint-disable-next-line no-unused-vars
   const [yaCompro, setYaCompro] = useState(true);
-  //Para modal de comprar cocay
   const [buyCocay, setBuyCocay] = useState(false);
-  //Para modal de avances (Camaras)
   const [modalAvances, setModalAvances] = useState(false);
-  //Para modal de Generate Code
   const [modalGenerateCode, setModalGenerateCode] = useState(false);
-  //Para modal de stake
   const [modalStake, setModalStake] = useState(false);
-  //Para modal de EARN COCAYS
   const [modalEarnCocays, setModalEarnCocays] = useState(false);
-  //Para modal de EARN COCAYS
   const [modalTeams, setModalTeams] = useState(false);
-  //Si detecta USDT, abre modal y ofrece hacer swap
   const [detectoUSDT, setDetectoUSDT] = useState(true);
+  const [balanceCocay, setBalanceCocay] = useState(0);
+  const [cantInv, setCantInv] = useState(0);
+  
+  const [sponsor, setSponosor] = useState(0);
+  const [codigoReferido, setCodigoReferido] = useState(0);
+
+  const [parentMessage, setParentMessage] = useState("");
+  const [sponsorCodeMessage, setSponsorCodeMessage] = useState("");
+
+  const wallet = useAddress();
+  const signer = useSigner();
+
+  const data = async () => {
+    const sdk = ThirdwebSDK.fromSigner(signer, Binance);
+    const contractCocayToken = await sdk.getContract(
+      "0x68d54B7C15CbdEC9B632A261D45f5D8786DD3530",
+      abiToken,
+    );
+
+    const balanceCocay = await contractCocayToken.call(
+      "balanceOf",
+      [wallet]
+    );
+
+    console.log(balanceCocay);
+    setBalanceCocay(parseFloat(ethers.utils.formatUnits(balanceCocay, 18)));
+
+    const contractCocay = await sdk.getContract(
+      "0xB02d23e27881fB6eAc740BDfA1AB81FF908435a1", 
+      abiIco,
+    );
+
+    const parent = await contractCocay.call(
+      "parent", 
+      [wallet]
+    );
+    const sponsorCodesOfWallet = await contractCocay.call(
+      "sponsorCodesOfWallet", 
+      [wallet]
+    );
+
+    const cantInv = await contractCocay.call(
+      "cantInv", 
+      []
+    );
+    console.log(cantInv)
+    setCantInv(parseFloat(ethers.utils.formatUnits(cantInv, 18)));
+    console.log(parent);
+    console.log(sponsorCodesOfWallet);
+
+    // Update messages based on the data received
+    if (parent.toLowerCase() === "0x0000000000000000000000000000000000000000") {
+      setParentMessage("No tienes Patrocinador");
+    } else {
+      setParentMessage(`${parent}`);
+    }
+
+    if (sponsorCodesOfWallet === "") {
+      setSponsorCodeMessage("No tienes código aún");
+    } else {
+      setSponsorCodeMessage(`${sponsorCodesOfWallet}`);
+    }
+  };
+
+  useEffect(() => {
+    console.log("data");
+    data();
+  }, [wallet]);
+
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(sponsorCodeMessage)
+      .then(() => {
+        alert("Código de referido copiado al portapapeles");
+      })
+      .catch(err => {
+        console.error("Error al copiar el código de referido: ", err);
+      });
+  };
 
   return (
     <div className="w-full py-8 bg-black bg-opacity-80 border border-primary flex flex-col gap-[10px] items-center rounded-[18px] relative p-2 sm:p-4">
       <button
-        onClick={() => {
-          //Vuelve para atras
-          setComprar(false);
-        }}
+        onClick={() => setComprar(false)}
         className="absolute left-2 top-2"
       >
         <IoMdArrowRoundBack className="text-4xl text-white" />
       </button>
-      {/* Info */}
       <div className="mt-8 w-full flex flex-col gap-[10px]">
         <div className="flex gap-[10px] items-center">
           <p>
-            <span className="text-orange-500">Referido:</span> 12345678
+          Patrocinador: <span className="text-orange-500">{parentMessage}</span>
+            <br />
+           Codigo de referidos: <span onClick={copyToClipboard} className="text-orange-500">{sponsorCodeMessage}</span>
           </p>
-          <button>
+          {/*<button >
             <FaCopy className="text-xl" />
-          </button>
+          </button>*/}
         </div>
-        {/* Botones agregados */}
+        <br />
         <div className="flex gap-[10px] flex-wrap justify-center">
-          {/* Este boton abre el modal para comprar cocays */}
           <button onClick={() => setBuyCocay(true)} className="button-3d-2">
             Comprar Cocay
           </button>
@@ -79,9 +150,9 @@ const Comprar = ({
           <button onClick={() => setModalTeams(true)} className="button-3d-2">
             Mi Red
           </button>
-          <button disabled={!yaCompro} className={`button-3d-2`}>
-            Mis Codigos
-          </button>
+         {/* <button disabled={!yaCompro} className="button-3d-2">
+            Mis Códigos
+          </button>*/}
           <button
             onClick={() => setModalGenerateCode(true)}
             className="button-3d-2"
@@ -93,6 +164,7 @@ const Comprar = ({
       <div className="flex justify-between max-md:flex-wrap gap-[5px] w-full">
         <UserInfo />
         <CocayInfo
+          balanceCocay={balanceCocay}
           yaCompro={yaCompro}
           setModalGenerateCode={setModalGenerateCode}
           setModalStake={setModalStake}
@@ -117,13 +189,11 @@ const Comprar = ({
         <div className="bg-back rounded-[18px] w-full">
           <DonationsOrTransactions yaCompro={yaCompro} />
         </div>
-        {/* Transacciones de personas */}
-        <PeopleTransactions />
       </div>
-      {/* Modales para los botones */}
       {buyCocay && (
-        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center ">
+        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center">
           <BuyCocay
+          cantInv={cantInv}
             setBuyCocay={setBuyCocay}
             loggedTwitter={loggedTwitter}
             setLoggedTwitter={setLoggedTwitter}
@@ -133,8 +203,7 @@ const Comprar = ({
         </div>
       )}
       {modalAvances && (
-        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center items-center ">
-          {/* Camaras = avances */}
+        <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center items-center">
           <Camaras setModalAvances={setModalAvances} />
         </div>
       )}

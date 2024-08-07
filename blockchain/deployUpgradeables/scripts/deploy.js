@@ -6,11 +6,11 @@ const wait = (ms) => {
 
 
 async function upgrade() {
-    var proxyAddress = '0x490A3a1Ca4bA80Bd50c9ebb62AC388dF11910f0b';
-    var Contract2 = await hre.ethers.getContractFactory("Account");
+    var proxyAddress = '0xB02d23e27881fB6eAc740BDfA1AB81FF908435a1';
+    var Contract2 = await hre.ethers.getContractFactory("IcoCocay");
     await upgrades.upgradeProxy(proxyAddress, Contract2, {
         gasLimit: 15000000, // Aumenta gasLimit aquí
-        gasPrice: ethers.parseUnits('60', 'gwei') // Aumenta gasPrice aquí
+        gasPrice: ethers.parseUnits('5', 'gwei') // Aumenta gasPrice aquí
     });
 
     await wait(30000);
@@ -33,7 +33,7 @@ async function deploy() {
     var SatoshiContract = await hre.ethers.getContractFactory("IcoCocay");
     var satoshiContract = await upgrades.deployProxy(
         SatoshiContract,
-        ['0x55d398326f99059fF775485246999027B3197955', '0x39bf6eE51855EE437Ba011C385DAdCa0b0160406','0x534cae6D2510ED7688B220fE9a9fC1B9ba9DA9b8', '0x74598319417e3dFf6081BF1eE9d269F5B41D4a93'],
+        ['0x55d398326f99059fF775485246999027B3197955', '0x68d54B7C15CbdEC9B632A261D45f5D8786DD3530','0x534cae6D2510ED7688B220fE9a9fC1B9ba9DA9b8', '0x74598319417e3dFf6081BF1eE9d269F5B41D4a93'],
         { kind: "uups", gasLimit: 10000000, gasPrice: ethers.parseUnits('5', 'gwei') },
     );
     var tx = await satoshiContract.waitForDeployment();
@@ -51,7 +51,7 @@ async function deploy() {
     });
 }
 
-/*
+
 async function main() {
     // Obtén el contrato a desplegar
     const CocayToken = await ethers.getContractFactory("CocayToken");
@@ -72,9 +72,8 @@ async function main() {
         constructorArguments: [],
     });
 }
-*/
 
-deploy().catch((error) => {
+upgrade().catch((error) => {
     console.error(error);
     process.exitCode = 1;
 });

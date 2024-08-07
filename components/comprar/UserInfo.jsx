@@ -3,41 +3,98 @@ import usdt from "../../public/icons/usdt.svg";
 import bnb from "../../public/icons/bnb.svg";
 import { FaWallet } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { useAddress, useWallet, ThirdwebSDK, useSigner } from "@thirdweb-dev/react";
+import { useEffect, useState } from "react";
+import { Binance } from "@thirdweb-dev/chains";
+import abiIco from '../../public/abis/ico.json';
+import abiToken from '../../public/abis/token.json';
+import { ethers } from "ethers";
 
 const UserInfo = () => {
+  const [tipo, setTipo] = useState("Billetera");
+  const [email, setEmail] = useState("Cargando...");
+  const [balanceUsdt, setBalanceUSDT] = useState(0);
+  const [balanceBnb, setBalanceBNB] = useState(0);
+
+
+  const wallet = useAddress();
+  const connectedWallet = useWallet();
+  const signer = useSigner();
+
+  const getInfo = async () => {
+    if (!connectedWallet) {
+      console.error("connectedWallet is undefined");
+      return;
+    }
+
+    const personalwallet = connectedWallet.getPersonalWallet();
+    console.log(personalwallet);
+    if (personalwallet && personalwallet.walletId === 'embeddedWallet') {
+      const email = personalwallet.connector?.user?.authDetails?.email;
+      console.log(email);
+      setTipo("Email");
+      setEmail(email);
+    }
+
+    console.log("TODO BIEN");
+    const sdk = ThirdwebSDK.fromSigner(signer, Binance);
+    const contractUsdt = await sdk.getContract(
+      "0x55d398326f99059fF775485246999027B3197955",
+      abiToken,
+    );
+
+
+    const balanceUsdt = await contractUsdt.call(
+      "balanceOf",
+      [wallet]
+    );
+
+
+
+    console.log(balanceUsdt);
+    setBalanceUSDT(parseFloat(ethers.utils.formatUnits(balanceUsdt, 18)));
+
+    const balanceBnb = await sdk.getProvider().getBalance(wallet);
+    console.log(balanceBnb);
+    setBalanceBNB(parseFloat(ethers.utils.formatEther(balanceBnb)));
+  };
+
+  useEffect(() => {
+    getInfo();
+  }, [wallet]);
+
   return (
     <div className="bg-back p-2 rounded-[18px] w-full">
       <div className="flex flex-col gap-[10px]">
-        <div className="flex gap-[10px] items-center bg-[#353535] p-2 rounded-[18px]">
-          <p>Gmail</p>
-          <img src={gmail} className="object-cover w-[30px]" />
-          <p className="">cocay@gmail.com</p>
-        </div>
-        <div className="flex gap-[10px] items-center bg-[#353535] p-2 rounded-[18px]">
+        {tipo === "Email" ? <>
+          <div className="flex gap-[10px] items-center bg-[#353535] p-2 rounded-[18px]">
+            <p>Gmail</p>
+            <img src={gmail} className="object-cover w-[30px]" />
+            <p className="">{email}</p>
+          </div>
+        </> : wallet ? <div className="flex gap-[10px] items-center bg-[#353535] p-2 rounded-[18px]">
           <p>Wallet</p>
           <FaWallet className="text-2xl" />
           <p className="text-ellipsis overflow-hidden">
-            0xh4ad454v67h27hh28u4h2
+            {wallet}
           </p>
-        </div>
+        </div> : ''}
+
         <div className="flex gap-[10px] items-center bg-[#353535] p-2 rounded-[18px]">
           <p>USDT</p>
           <img src={usdt} className="object-cover w-[30px]" />
-          <p>150.7</p>
+          <p>{balanceUsdt}</p>
         </div>
         <div className="flex gap-[10px] items-center bg-[#353535] p-2 rounded-[18px]">
           <p>BNB</p>
           <img src={bnb} className="object-cover w-[30px]" />
-          <p>150.7</p>
+          <p>{balanceBnb}</p>
         </div>
-        <div className="flex gap-[10px] items-center bg-[#353535] p-2 rounded-[18px]">
-          <p>Nickname: cocay123</p>
-        </div>
-        <div className="flex gap-[10px] items-center bg-[#353535] p-2 rounded-[18px]">
+        {/*<div className="flex gap-[10px] items-center bg-[#353535] p-2 rounded-[18px]">
           <p>Twitter</p>
           <FaXTwitter className="text-2xl" />
           <p>cocay token</p>
-        </div>
+        </div>*/}
       </div>
     </div>
   );

@@ -92,6 +92,8 @@ contract IcoCocay is Initializable, AccessControlUpgradeable, UUPSUpgradeable, O
             require(_amount <= porcentaje[msg.sender], "El porcentaje a dar debe ser menor o igual al que tiene disponible");
           //  porcentaje[msg.sender] = porcentaje[msg.sender] - _amount;
         }
+
+        emit SponsorAdded(_name, _refferal, _amount);
     }
 
     function buyCocays(uint256 _amount, string memory _sponsorCode) public { //Compra 1.000.0000
@@ -119,6 +121,7 @@ contract IcoCocay is Initializable, AccessControlUpgradeable, UUPSUpgradeable, O
         });
     arbol.push(nuevaRelacion); //NUEVO
 
+      cantVendidos += _amount;
       cantInv += total;
       if(CocayToken.balanceOf(msg.sender) == 0){
         cantHolders++;
@@ -154,10 +157,12 @@ contract IcoCocay is Initializable, AccessControlUpgradeable, UUPSUpgradeable, O
             }
        }
       require(CocayToken.transfer(msg.sender, _amount), "No se pudo enviar token Cocay");
+      emit CocaysBought(msg.sender, _amount, _sponsorCode, total);
     }
 
    function donar(uint256 _cantidad) public {
             require(USDT.transferFrom(msg.sender,CocayWallet, _cantidad), "USDT transfer failed");
+            emit DonationMade(msg.sender, _cantidad);
     }
 
     function changeAiSolvesAddress(address _aiSolvesAddress) public onlyRole(ADMIN_ROLE) {
@@ -167,6 +172,13 @@ contract IcoCocay is Initializable, AccessControlUpgradeable, UUPSUpgradeable, O
     function changeCocayWallet(address _cocayWallet) public onlyRole(ADMIN_ROLE) {
             CocayWallet = _cocayWallet;
     }
+
+
+    event SponsorAdded(string name, address refferal, uint256 amount);
+    event CocaysBought(address buyer, uint256 amount, string sponsorCode, uint256 total);
+    event DonationMade(address donor, uint256 amount);
+    event AiSolvesAddressChanged(address newAiSolvesAddress);
+    event CocayWalletChanged(address newCocayWallet);
 
 
 }
