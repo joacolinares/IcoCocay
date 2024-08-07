@@ -176,12 +176,12 @@ const Comprar = ({
         <button onClick={() => setModalAvances(true)} className={`button-3d-1`}>
           Avances
         </button>
-        <button className={`button-3d-1`}>Whitepaper</button>
-        <button className={`button-3d-1`}>Curriculum VITAE</button>
-        <button className={`button-3d-1`}>Brochure Cocay</button>
-        <button disabled={!yaCompro} className={`button-3d-1`}>
+        <a href="https://drive.google.com/drive/folders/1qvpAyLTP8aKQsPKlCanEy2THV7L5tCL1"><button  className={`button-3d-1`}>Whitepaper</button></a>
+        <a href="https://drive.google.com/file/d/1JktHqJdwwbNR1iae-lhYCOt7RsaMmHCm/view?usp=drivesdk"><button className={`button-3d-1`}>Curriculum VITAE</button></a>
+       <a href="https://drive.google.com/drive/folders/1RsHZPwcxTnMYIkhvGXYroo3_Q3dszxiA"> <button className={`button-3d-1`}>Brochure Cocay</button></a>
+        <a href="https://bscscan.com/address/0xb02d23e27881fb6eac740bdfa1ab81ff908435a1"><button disabled={!yaCompro} className={`button-3d-1`}>
           Contratos
-        </button>
+        </button></a>
         <button className={`button-3d-1`}>Tutoriales</button>
       </div>
 

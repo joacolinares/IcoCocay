@@ -23,7 +23,7 @@ const BuyCocay = ({
   const [selectedCurrency, setSelectedCurrency] = useState("USDT");
   const [confirmado, setConfirmado] = useState(false);
   const [agradecimiento, setAgradecimiento] = useState(false);
-
+  const [cantidad, setCantidad] = useState()
 
 
 
@@ -53,6 +53,7 @@ const BuyCocay = ({
           <PrecioCocay />
           {/* Con que moneda queres pagar? */}
           <SelectCurrency
+            cantidad={cantidad}
             selectedCurrency={selectedCurrency}
             setSelectedCurrency={setSelectedCurrency}
           />
@@ -60,6 +61,7 @@ const BuyCocay = ({
           <CurrencyBalance selectedCurrency={selectedCurrency} />
          {/* <SmartOrToken />*/}
           <Amount
+            setCantidad={setCantidad}
             setAgradecimiento={setAgradecimiento}
             loggedTwitter={loggedTwitter}
             setLoggedTwitter={setLoggedTwitter}

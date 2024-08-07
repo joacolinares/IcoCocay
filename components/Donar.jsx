@@ -128,15 +128,15 @@ const Donar = ({
             <img src={usdt} alt="usdt logo" className="w-[40px] object-cover" />
             <p>USDT</p>
           </button>
-          <button
-            onClick={() => setMetodoPago("card")}
+          <a href={`https://global.transak.com/?apiKey=0f4beee9-e541-442c-b6bc-bc41a442dfc3&cryptoCurrencyCode=USDT&fiatAmount=${valueToBuy}&fiatCurrency=USD&paymentMethod=credit_debit_card&redirectURL=https%3A%2F%2Fportfolio.metamask.io%2Fbuy%2Forder-process%2Ftransak-b&productsAvailed=BUY&walletAddress=${wallet}&partnerOrderId=null&walletRedirection=true&network=bsc`}><button
+           
             className={`bg-back font-semibold rounded-[18px] px-4 py-2 flex gap-[10px] items-center text-lg border-2 ${
               metodoPago == "card" ? "border-primary" : "border-white"
             }`}
           >
             <BsFillCreditCard2FrontFill className="text-4xl text-primary" />
             <p>Tarjeta</p>
-          </button>
+          </button></a>
         </div>
        {/* <div className="flex flex-col gap-[10px] w-full">
           <div className="flex gap-[10px] items-center bg-[#353535] p-2 rounded-[18px]">

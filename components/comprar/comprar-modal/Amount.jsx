@@ -6,6 +6,7 @@ import { useSigner, ThirdwebSDK } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
 
 const Amount = ({
+  setCantidad,
   setAgradecimiento,
   amountCocay,
   loggedTwitter,
@@ -100,7 +101,11 @@ const Amount = ({
         </div>
         <input
           value={valueToBuy}
-          onChange={(e) => setValueToBuy(e.target.value)}
+          onChange={(e) => {
+            console.log(e.target.value)
+            setValueToBuy(e.target.value)
+            setCantidad(e.target.value)
+          }}
           placeholder={0.0}
           type="number"
           className="px-4 py-2 rounded-[18px] text-black max-sm:w-[90%]"

@@ -24,7 +24,7 @@ function App() {
           <a href="#">
             <SiGitbook className="text-4xl text-primary" />
           </a>
-          <a href="#">
+          <a href="https://github.com/DevAiSolves">
             <FaGithub className="text-4xl text-primary" />
           </a>
         </div>
