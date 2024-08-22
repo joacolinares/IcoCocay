@@ -33,18 +33,18 @@ const CocayInfo = ({
         {/*<div className="flex gap-[10px] items-center">
           <p>Stake Time Remind:</p>
         </div>*/}
-       {/* <div className="flex gap-[10px] items-center">
+       <div className="flex gap-[10px] items-center">
           <div className="w-full mt-[20px] flex flex-wrap justify-center items-center gap-[5px]">
             <button
               onClick={() => setModalEarnCocays(true)}
               className="button-3d-2"
             >
-              COCAYS OBTENIDOS
+              GANANCIAS
             </button>
-            <button onClick={() => setModalStake(true)} className="button-3d-2">
+           <button disabled onClick={() => setModalStake(true)} className="button-3d-2">
               STAKE
             </button>
-            <button onClick={() => setModalTeams(true)} className="button-3d-2">
+            {/* <button onClick={() => setModalTeams(true)} className="button-3d-2">
               EQUIPOS
             </button> 
            <button
@@ -52,9 +52,9 @@ const CocayInfo = ({
               className="button-3d-2"
             >
               GENERAR CÓDIGO
-            </button> 
+            </button> */}
           </div>
-        </div>*/}
+        </div>
       </div>
     </div>
   );

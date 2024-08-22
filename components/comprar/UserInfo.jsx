@@ -12,7 +12,7 @@ import { ethers } from "ethers";
 
 const UserInfo = () => {
   const [tipo, setTipo] = useState("Billetera");
-  const [email, setEmail] = useState("Cargando...");
+  const [email, setEmail] = useState("");
   const [balanceUsdt, setBalanceUSDT] = useState(0);
   const [balanceBnb, setBalanceBNB] = useState(0);
 
@@ -66,19 +66,19 @@ const UserInfo = () => {
   return (
     <div className="bg-back p-2 rounded-[18px] w-full">
       <div className="flex flex-col gap-[10px]">
-        {tipo === "Email" ? <>
+       
           <div className="flex gap-[10px] items-center bg-[#353535] p-2 rounded-[18px]">
             <p>Gmail</p>
             <img src={gmail} className="object-cover w-[30px]" />
             <p className="">{email}</p>
           </div>
-        </> : wallet ? <div className="flex gap-[10px] items-center bg-[#353535] p-2 rounded-[18px]">
+       <div className="flex gap-[10px] items-center bg-[#353535] p-2 rounded-[18px]">
           <p>Wallet</p>
           <FaWallet className="text-2xl" />
           <p className="text-ellipsis overflow-hidden">
             {wallet}
           </p>
-        </div> : ''}
+        </div> 
 
         <div className="flex gap-[10px] items-center bg-[#353535] p-2 rounded-[18px]">
           <p>USDT</p>
@@ -90,11 +90,11 @@ const UserInfo = () => {
           <img src={bnb} className="object-cover w-[30px]" />
           <p>{balanceBnb}</p>
         </div>
-        {/*<div className="flex gap-[10px] items-center bg-[#353535] p-2 rounded-[18px]">
+        <div className="flex gap-[10px] items-center bg-[#353535] p-2 rounded-[18px]">
           <p>Twitter</p>
           <FaXTwitter className="text-2xl" />
           <p>cocay token</p>
-        </div>*/}
+        </div>
       </div>
     </div>
   );

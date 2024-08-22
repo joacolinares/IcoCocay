@@ -18,8 +18,8 @@ const EarnCocays = ({ setModalEarnCocays }) => {
       <div className="mt-12 w-full flex flex-col gap-[30px] items-center">
         <p className="text-2xl font-semibold text-orange-500">Ganados</p>
         <div className="flex flex-col items-center gap-[20px] bg-[#3d3d3d] px-4 py-2 rounded-[18px] border border-orange-500">
-          <div className="text-xl font-medium">Staking Cocays = 99.31</div>
-          <div className="text-xl font-medium">Teams Cocays = 44.32</div>
+          <div className="text-xl font-medium">Staking Cocays = 0</div>
+          <div className="text-xl font-medium">Teams Cocays = 0</div>
         </div>
 
         <div className="flex gap-[10px]">

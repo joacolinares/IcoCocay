@@ -66,46 +66,7 @@ const InfoDonaciones = () => {
       }
     };
 
-    const fetchDonaciones = async () => {
-      if (!wallet) return;
 
-      const provider = new ethers.providers.JsonRpcProvider("https://bsc-mainnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3");
-      const contractAddress = "0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E";
-      const contract = new ethers.Contract(contractAddress, abi, provider);
-
-      const eventSignature = ethers.utils.id("DonationMade(address,uint256)");
-
-      try {
-        const currentBlock = await provider.getBlockNumber();
-        const fromBlock = Math.max(currentBlock - 1000, 0); // Ajusta el rango de bloques según sea necesario
-        const filter = {
-          address: contractAddress,
-          topics: [eventSignature],
-          fromBlock: fromBlock,
-          toBlock: currentBlock,
-        };
-
-        const logs = await provider.getLogs(filter);
-        const parsedEvents = logs.map(log => contract.interface.parseLog(log));
-        
-        // Filtrar eventos para que solo se incluyan los de la wallet conectada
-        const filteredEvents = parsedEvents
-          .filter(event => event.args.donor.toLowerCase() === wallet.toLowerCase())
-          .map(async event => {
-            const block = await provider.getBlock(event.blockNumber);
-            return {
-              fecha: new Date(block.timestamp * 1000).toLocaleDateString(),
-              cantidad: ethers.utils.formatUnits(event.args.amount, 18),
-              wallet: event.args.donor,
-            };
-          });
-
-        const eventsWithBlockData = await Promise.all(filteredEvents);
-        setDonaciones(eventsWithBlockData);
-      } catch (error) {
-        console.error("Error fetching donations:", error);
-      }
-    };
 
     fetchDonaciones2();
   }, [wallet]);
