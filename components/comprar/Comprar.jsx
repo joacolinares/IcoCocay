@@ -62,7 +62,7 @@ const Comprar = ({
     setBalanceCocay(parseFloat(ethers.utils.formatUnits(balanceCocay, 18)));
 
     const contractCocay = await sdk.getContract(
-      "0xB02d23e27881fB6eAc740BDfA1AB81FF908435a1", 
+      "0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E", 
       abiIco,
     );
 
@@ -179,7 +179,7 @@ const Comprar = ({
         <a href="https://drive.google.com/drive/folders/1qvpAyLTP8aKQsPKlCanEy2THV7L5tCL1"><button  className={`button-3d-1`}>Whitepaper</button></a>
         <a href="https://drive.google.com/file/d/1JktHqJdwwbNR1iae-lhYCOt7RsaMmHCm/view?usp=drivesdk"><button className={`button-3d-1`}>Curriculum VITAE</button></a>
        <a href="https://drive.google.com/drive/folders/1RsHZPwcxTnMYIkhvGXYroo3_Q3dszxiA"> <button className={`button-3d-1`}>Brochure Cocay</button></a>
-        <a href="https://bscscan.com/address/0xb02d23e27881fb6eac740bdfa1ab81ff908435a1"><button disabled={!yaCompro} className={`button-3d-1`}>
+        <a href="https://bscscan.com/address/0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E"><button disabled={!yaCompro} className={`button-3d-1`}>
           Contratos
         </button></a>
         <button className={`button-3d-1`}>Tutoriales</button>

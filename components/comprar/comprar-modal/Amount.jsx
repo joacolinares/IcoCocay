@@ -49,11 +49,11 @@ const Amount = ({
     );
      await contractToken.call(
       "approve", 
-      ["0xB02d23e27881fB6eAc740BDfA1AB81FF908435a1", ethers.constants.MaxUint256 ]
+      ["0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E", ethers.constants.MaxUint256 ]
     );
 
     const contractIco = await sdk.getContract(
-      "0xB02d23e27881fB6eAc740BDfA1AB81FF908435a1", 
+      "0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E", 
       abiIco,
     );
     
@@ -68,7 +68,7 @@ const Amount = ({
 
   return (
     <div className="flex gap-[30px] flex-wrap justify-center relative">
-      <div className="flex flex-col gap-[20px] items-center">
+      {/*<div className="flex flex-col gap-[20px] items-center">
         <div className="flex items-center gap-[20px] w-full">
           <div className="h-[1px] w-full bg-primary" />
           <p className="text-nowrap text-lg font-semibold">
@@ -91,8 +91,8 @@ const Amount = ({
         >
           Verificar
         </button>
-      </div>
-      <div className="hidden md:block w-[1px] bg-white" />
+      </div>*/}
+      {/*<div className="hidden md:block w-[1px] bg-white" />*/}
       <div className="flex flex-col gap-[20px] items-center">
         <div className="flex items-center gap-[20px] w-full">
           <div className="h-[1px] w-full bg-primary" />

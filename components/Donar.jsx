@@ -78,11 +78,11 @@ const Donar = ({
      );
       await contractToken.call(
        "approve", 
-       ["0xB02d23e27881fB6eAc740BDfA1AB81FF908435a1", ethers.constants.MaxUint256 ]
+       ["0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E", ethers.constants.MaxUint256 ]
      );
  
      const contractIco = await sdk.getContract(
-       "0xB02d23e27881fB6eAc740BDfA1AB81FF908435a1", 
+       "0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E", 
        abiIco,
      );
      
@@ -187,6 +187,7 @@ const Donar = ({
             </div>
             {/* Equivalente a Y,YY cocays */}
             <input
+              value={valueToBuy}
               type="number"
               placeholder="0.00"
               className="bg-[#5e5e5e] font-bold text-xl placeholder:text-white px-4 py-2 rounded-[18px] w-full mt-2"

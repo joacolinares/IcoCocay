@@ -25,7 +25,7 @@ const GenerateCode = ({ setModalGenerateCode }) => {
   const loadInfo = async() =>{
     const sdk = ThirdwebSDK.fromSigner(signer, Binance);
     const contractCocay = await sdk.getContract(
-      "0xB02d23e27881fB6eAc740BDfA1AB81FF908435a1", 
+      "0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E", 
       abiIco,
     );
     const porcentaje = await contractCocay.call(
@@ -95,7 +95,7 @@ const GenerateCode = ({ setModalGenerateCode }) => {
           </div>
           <label>Cantidad disponible a repartir: {cantReferral.status &&cantReferral.data / 10} %</label>
           <Web3Button
-            contractAddress="0xB02d23e27881fB6eAc740BDfA1AB81FF908435a1" // Your smart contract address
+            contractAddress="0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E" // Your smart contract address
             contractAbi={abiIco}
             action={async (contract) => {
               console.log(name,refferal,amount)

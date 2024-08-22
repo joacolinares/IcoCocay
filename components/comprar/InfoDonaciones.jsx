@@ -5,19 +5,72 @@ import chain from "../../public/icons/chain.png";
 import calendar from "../../public/icons/calendar.png";
 import { FaWallet } from "react-icons/fa";
 import { FaShareAlt } from "react-icons/fa";
-import { useAddress } from "@thirdweb-dev/react";
 import { useEffect, useState } from "react";
+import { useAddress, useSigner, ThirdwebSDK } from "@thirdweb-dev/react";
+import { Binance } from "@thirdweb-dev/chains";
+import abiIco from '../../public/abis/ico.json';
+
+
 
 const InfoDonaciones = () => {
   const [donaciones, setDonaciones] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+
   const wallet = useAddress();
+  const signer = useSigner();
 
   useEffect(() => {
+    const fetchDonaciones2 = async () => {
+      if (!wallet || !signer) return;
+  
+      const sdk = ThirdwebSDK.fromSigner(signer, Binance);
+      const contractIco = await sdk.getContract(
+        "0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E", 
+        abiIco
+      );
+  
+      let index = 0;
+      const newTeams = [];
+      setLoading(true);
+      setError(null);
+  
+      try {
+        while (true) {
+          try {
+            const recibos = await contractIco.call("donaciones", [wallet, index]);
+            console.log(recibos)
+            if (!recibos || recibos.length === 0) break;
+  
+            newTeams.push({
+  
+              fecha: new Date(recibos.timestamp * 1000).toLocaleDateString(),
+              cantidad: ethers.utils.formatUnits(recibos.cantidad, 18),
+              wallet: wallet,
+            });
+            console.log(newTeams)
+            index++;
+          } catch (err) {
+            console.error("Error fetching recibo:", err);
+            break; // Exit the loop on error
+          }
+        }
+      } catch (err) {
+        console.error("Error in fetching recibos:", err);
+        setError("No se pudieron obtener los datos.");
+      } finally {
+        console.log(newTeams)
+        setDonaciones(newTeams);
+        setLoading(false);
+      }
+    };
+
     const fetchDonaciones = async () => {
       if (!wallet) return;
 
       const provider = new ethers.providers.JsonRpcProvider("https://bsc-mainnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3");
-      const contractAddress = "0xB02d23e27881fB6eAc740BDfA1AB81FF908435a1";
+      const contractAddress = "0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E";
       const contract = new ethers.Contract(contractAddress, abi, provider);
 
       const eventSignature = ethers.utils.id("DonationMade(address,uint256)");
@@ -54,7 +107,7 @@ const InfoDonaciones = () => {
       }
     };
 
-    fetchDonaciones();
+    fetchDonaciones2();
   }, [wallet]);
 
   const formatWalletAddress = (address) => {

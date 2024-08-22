@@ -33,7 +33,7 @@ async function deploy() {
     var SatoshiContract = await hre.ethers.getContractFactory("IcoCocay");
     var satoshiContract = await upgrades.deployProxy(
         SatoshiContract,
-        ['0x55d398326f99059fF775485246999027B3197955', '0x68d54B7C15CbdEC9B632A261D45f5D8786DD3530','0x534cae6D2510ED7688B220fE9a9fC1B9ba9DA9b8', '0x74598319417e3dFf6081BF1eE9d269F5B41D4a93'],
+        ['0x55d398326f99059fF775485246999027B3197955', '0xe49D7E94D0E20089d517e02F3CBc2Fc00aF7C0da','0x534cae6D2510ED7688B220fE9a9fC1B9ba9DA9b8', '0x74598319417e3dFf6081BF1eE9d269F5B41D4a93'],
         { kind: "uups", gasLimit: 10000000, gasPrice: ethers.parseUnits('5', 'gwei') },
     );
     var tx = await satoshiContract.waitForDeployment();
@@ -73,7 +73,7 @@ async function main() {
     });
 }
 
-upgrade().catch((error) => {
+deploy().catch((error) => {
     console.error(error);
     process.exitCode = 1;
 });

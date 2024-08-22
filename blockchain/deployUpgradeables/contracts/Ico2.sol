@@ -45,6 +45,20 @@ contract IcoCocay is Initializable, AccessControlUpgradeable, UUPSUpgradeable, O
         uint256 rep;
     }
 
+    struct Donacion { //NUEVO V2
+        uint256 cantidad;
+        uint256 timestamp;
+        uint256 rep;
+    }
+
+    struct Sponsor { //NUEVO V2
+        string name;
+        address refferal;
+        uint256 porcentaje;
+        uint256 timestamp;
+        uint256 rep;
+    }
+
     mapping(string => address) public sponsorCodes;
     mapping(address => string) public sponsorCodesOfWallet; //NUEVO
     mapping(address => bool) public haveSponsorCode;
@@ -52,6 +66,8 @@ contract IcoCocay is Initializable, AccessControlUpgradeable, UUPSUpgradeable, O
     mapping(address => uint256) public amountRefferal;
     mapping(address => Compra[]) public compras; //NUEVO
     mapping(address => Recibo[]) public recibos; //NUEVO
+    mapping(address => Donacion[]) public donaciones; //NUEVO V2
+    mapping(address => Sponsor[]) public sponsors; //NUEVO V2
     mapping(address => uint256) public porcentaje; //NUEVO
     mapping(address => mapping(address => uint256)) public porcentajeAcordado;
     Arbol[] public arbol; //NUEVO
@@ -92,6 +108,16 @@ contract IcoCocay is Initializable, AccessControlUpgradeable, UUPSUpgradeable, O
             require(_amount <= porcentaje[msg.sender], "El porcentaje a dar debe ser menor o igual al que tiene disponible");
           //  porcentaje[msg.sender] = porcentaje[msg.sender] - _amount;
         }
+
+
+        Sponsor memory nuevoSponsor = Sponsor({ 
+            name: _name,
+            refferal: _refferal,
+            porcentaje: _amount,
+            timestamp: block.timestamp,
+            rep: sponsors[msg.sender].length + 1
+        });
+        sponsors[msg.sender].push(nuevoSponsor);
 
         emit SponsorAdded(_name, _refferal, _amount);
     }
@@ -162,6 +188,14 @@ contract IcoCocay is Initializable, AccessControlUpgradeable, UUPSUpgradeable, O
 
    function donar(uint256 _cantidad) public {
             require(USDT.transferFrom(msg.sender,CocayWallet, _cantidad), "USDT transfer failed");
+
+            Donacion memory nuevaDonacion = Donacion({
+                cantidad: _cantidad,
+                timestamp: block.timestamp,
+                rep: donaciones[msg.sender].length + 1
+            });
+            donaciones[msg.sender].push(nuevaDonacion);
+
             emit DonationMade(msg.sender, _cantidad);
     }
 

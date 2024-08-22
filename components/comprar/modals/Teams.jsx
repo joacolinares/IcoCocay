@@ -12,16 +12,20 @@ const Teams = ({ setModalTeams }) => {
   const [teams, setTeams] = useState([]);  // Cambiado a teams para mostrar datos dinámicos
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [error2, setError2] = useState(null);
   const [teams2, setTeams2] = useState([]);
   const signer = useSigner();
   const wallet = useAddress();
 
+
+
+  
   const fetchRecibos = async () => {
     if (!wallet || !signer) return;
 
     const sdk = ThirdwebSDK.fromSigner(signer, Binance);
     const contractIco = await sdk.getContract(
-      "0xB02d23e27881fB6eAc740BDfA1AB81FF908435a1", 
+      "0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E", 
       abiIco
     );
 
@@ -34,7 +38,7 @@ const Teams = ({ setModalTeams }) => {
       while (true) {
         try {
           const recibos = await contractIco.call("recibos", [wallet, index]);
-
+          console.log(recibos)
           if (!recibos || recibos.length === 0) break;
 
           newTeams.push({
@@ -44,7 +48,7 @@ const Teams = ({ setModalTeams }) => {
             cocaysReferidos: recibos[2].toString(),  // Convert _BigNumber to string
             codigoReferido: recibos[3].toString()    // Convert _BigNumber to string
           });
-
+          console.log(newTeams)
           index++;
         } catch (err) {
           console.error("Error fetching recibo:", err);
@@ -55,70 +59,67 @@ const Teams = ({ setModalTeams }) => {
       console.error("Error in fetching recibos:", err);
       setError("No se pudieron obtener los datos.");
     } finally {
+      console.log(newTeams)
       setTeams(newTeams);
       setLoading(false);
     }
   };
 
 
-  const fetchSponsorEvents = async () => {
-    if (!wallet) return;
+
+
   
-    const provider = new ethers.providers.JsonRpcProvider("https://bsc-mainnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3");
-    const contractAddress = "0xB02d23e27881fB6eAc740BDfA1AB81FF908435a1";
-    const contract = new ethers.Contract(contractAddress, abiIco, provider);
-  
-    const eventSignature = ethers.utils.id("SponsorAdded(string,address,uint256)");
-  
+  const fetchSponsorEvents3 = async () => {
+    const sdk = ThirdwebSDK.fromSigner(signer, Binance);
+    const contractIco = await sdk.getContract(
+      "0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E", 
+      abiIco
+    );
+
+    let index = 0;
+    const newTeams = [];
+    setLoading(true);
+    setError(null);
+
+
     try {
-      const currentBlock = await provider.getBlockNumber();
-      const fromBlock = Math.max(currentBlock - 1000, 0); // Ajusta el rango de bloques según sea necesario
-      const filter = {
-        address: contractAddress,
-        topics: [eventSignature],
-        fromBlock: 41137000,
-        toBlock: currentBlock
-      };
-  
-      const logs = await provider.getLogs(filter);
-      const parsedEvents = await Promise.all(logs.map(async (log) => {
-        const parsedLog = contract.interface.parseLog(log);
-        const tx = await provider.getTransaction(log.transactionHash);
-        return { ...parsedLog, sender: tx.from };
-      }));
-  
-      console.log(parsedEvents)
+      while (true) {
+        try {
+          const recibos = await contractIco.call("sponsors", [wallet, index]);
+          console.log(recibos)
+          if (!recibos || recibos.length === 0) break;
 
-      const filteredEvents = parsedEvents.filter(event => event.sender.toLowerCase() === wallet.toLowerCase());
-      console.log(filteredEvents)
-
-      const formattedEvents = await Promise.all(filteredEvents.map(async (event) => {
-        const block = await provider.getBlock(event.blockNumber);
-        return {
-          id: event.transactionHash,
-          name: event.args.name,
-          refferal: event.args.refferal,
-          amount: parseInt(event.args.amount._hex,16),
-          sender: event.sender,  // Dirección del remitente
-          date: new Date(block.timestamp * 1000).toLocaleDateString(),
-          time: new Date(block.timestamp * 1000).toLocaleTimeString(),
-        };
-      }));
-      
-      setTeams2(formattedEvents);
-    } catch (error) {
-      console.error("Error fetching sponsor events:", error);
-      setError("No se pudieron obtener los datos de los eventos.");
+          newTeams.push({
+            id: parseInt(recibos.rep._hex,16),
+            name: recibos.name,
+            refferal: recibos.refferal,
+            amount: parseInt(recibos.porcentaje._hex,16),
+            sender: wallet,  // Dirección del remitente
+            date: new Date(recibos.timestamp * 1000).toLocaleDateString(),
+            time: new Date(recibos.timestamp * 1000).toLocaleTimeString(),
+          });
+          console.log(newTeams)
+          index++;
+        } catch (err) {
+          console.error("Error fetching recibo:", err);
+          break; // Exit the loop on error
+        }
+      }
+    } catch (err) {
+      console.error("Error in fetching recibos:", err);
+      setError("No se pudieron obtener los datos.");
     } finally {
+      setTeams2(newTeams);
+      console.log(newTeams)
       setLoading(false);
+
     }
   };
   
-  
-  
 
   useEffect(() => {
-    fetchSponsorEvents()
+    console.log("aaa")
+    fetchSponsorEvents3()
     fetchRecibos();
   }, [wallet, signer]);
 
@@ -152,7 +153,7 @@ const Teams = ({ setModalTeams }) => {
                     Comprador: <span className="text-orange-400">{team.wallet}</span>
                   </p>
                   <p>
-                    Codigo:{" "}
+                    Cantidad USDT recibidos:{" "}
                     <span className="text-orange-400">
                       {team.cocaysComprados}$
                     </span>
@@ -184,8 +185,8 @@ const Teams = ({ setModalTeams }) => {
 
         {loading ? (
           <p className="text-base">Cargando...</p>
-        ) : error ? (
-          <p className="text-base text-red-500">{error}</p>
+        ) : error2 ? (
+          <p className="text-base text-red-500">{error2}</p>
         ) : (
           <div className="overflow-y-scroll max-h-[400px] flex flex-col items-center gap-[20px] w-full">
             {teams2.map((team, i) => (
@@ -207,7 +208,7 @@ const Teams = ({ setModalTeams }) => {
 
                   <p>
                     Porcentaje negociado:{" "}
-                    <span className="text-orange-400">{team.amount} %</span>
+                    <span className="text-orange-400">{team.amount / 10}%</span>
                   </p>
                 </div>
               </div>

@@ -1,19 +1,26 @@
 import { ethers } from "ethers";
 import abi from "../../public/abis/ico.json";
 import token from "../../public/token.gif";
-import { useAddress } from "@thirdweb-dev/react";
 import { useEffect, useState } from "react";
+import { useAddress, useSigner, ThirdwebSDK } from "@thirdweb-dev/react";
+import abiIco from '../../public/abis/ico.json';
+import { Binance } from "@thirdweb-dev/chains";
 
 const LastTransactions = ({ yaCompro }) => {
-  const wallet = useAddress();
   const [transactions, setTransactions] = useState([]);
+  const [buy, setBuys] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const wallet = useAddress();
+  const signer = useSigner();
 
   useEffect(() => {
     const fetchTransactions = async () => {
       if (!wallet) return;
 
       const provider = new ethers.providers.JsonRpcProvider("https://bsc-mainnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3");
-      const contractAddress = "0xB02d23e27881fB6eAc740BDfA1AB81FF908435a1";
+      const contractAddress = "0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E";
       const contract = new ethers.Contract(contractAddress, abi, provider);
 
       const eventSignature = ethers.utils.id("CocaysBought(address,uint256,string,uint256)");
@@ -60,13 +67,67 @@ const LastTransactions = ({ yaCompro }) => {
       }
     };
 
-    fetchTransactions();
+
+    const fetchTransactions2 = async () => {
+      const sdk = ThirdwebSDK.fromSigner(signer, Binance);
+      const contractIco = await sdk.getContract(
+        "0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E", 
+        abiIco
+      );
+
+      let index = 0;
+      const newTeams = [];
+      setLoading(true);
+      setError(null);
+
+
+      try {
+        while (true) {
+          try {
+            const recibos = await contractIco.call("compras", [wallet, index]);
+            console.log(recibos)
+            if (!recibos || recibos.length === 0) break;
+  
+            newTeams.push({
+              cant:  ethers.utils.formatUnits(recibos[0], 18),
+              tiempo:  new Date(recibos[1] * 1000).toLocaleDateString(), // Convert _BigNumber to string
+            });
+            console.log(newTeams)
+            index++;
+          } catch (err) {
+            console.error("Error fetching recibo:", err);
+            break; // Exit the loop on error
+          }
+        }
+      } catch (err) {
+        console.error("Error in fetching recibos:", err);
+        setError("No se pudieron obtener los datos.");
+      } finally {
+        setTransactions(newTeams);
+        console.log(newTeams)
+        setBuys(newTeams);
+        setLoading(false);
+
+      }
+
+
+
+    }
+
+
+    fetchTransactions2();
   }, [wallet]);
 
   return (
     <div className="rounded-[18px] w-full">
       <p className="text-xl font-semibold">Tus últimas transacciones:</p>
-      {yaCompro ? (
+     {loading ?
+     <> 
+      <p className="text-base underline mt-[20px]">Cargando...</p>
+      </>
+      : 
+      <>
+       {yaCompro ? (
         transactions.length > 0 ? (
           <div className="flex flex-col gap-[10px] mt-[10px]">
             {transactions.map((transaction) => (
@@ -77,7 +138,7 @@ const LastTransactions = ({ yaCompro }) => {
                 <div className="flex flex-col sm:flex-row gap-[10px] items-center p-1 text-center sm:text-start">
                   <div className="overflow-hidden w-full">
                     <p className="break-words text-xs sm:text-base">
-                      Wallet address: {transaction.buyer}
+                      {wallet}
                     </p>
                     <p>{transaction.date}</p>
                     <p>{transaction.time}</p>
@@ -85,15 +146,15 @@ const LastTransactions = ({ yaCompro }) => {
                 </div>
                 <div className="flex flex-col gap-[5px]">
                   <div className="flex items-center">
-                    <p>+ ${transaction.amount}</p>
+                    <p>+ ${transaction.cant}</p>
                     <img
                       src={token}
                       alt="Cocay logo"
                       className="w-[40px] object-cover"
                     />
                   </div>
-                  <p>Total: ${transaction.total}</p>
-                  <p>Sponsor Code: {transaction.sponsorCode}</p>
+                  <p> + ${transaction.cant} USDT</p>
+                  {/*<p>Sponsor Code: {transaction.sponsorCode}</p>*/}
                 </div>
               </div>
             ))}
@@ -104,6 +165,8 @@ const LastTransactions = ({ yaCompro }) => {
       ) : (
         <p className="text-base underline mt-[20px]">Todavía no has comprado cocays!!</p>
       )}
+      </>
+      }
     </div>
   );
 };
