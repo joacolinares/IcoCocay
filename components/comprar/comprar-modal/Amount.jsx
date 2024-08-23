@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Binance } from "@thirdweb-dev/chains";
 import abiIco from '../../../public/abis/ico.json';
 import abiToken from '../../../public/abis/token.json';

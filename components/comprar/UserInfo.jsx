@@ -10,7 +10,7 @@ import abiIco from '../../public/abis/ico.json';
 import abiToken from '../../public/abis/token.json';
 import { ethers } from "ethers";
 
-const UserInfo = () => {
+const UserInfo = ({ _signInWithX, _xUserName }) => {
   const [tipo, setTipo] = useState("Billetera");
   const [email, setEmail] = useState("");
   const [balanceUsdt, setBalanceUSDT] = useState(0);
@@ -93,7 +93,14 @@ const UserInfo = () => {
         <div className="flex gap-[10px] items-center bg-[#353535] p-2 rounded-[18px]">
           <p>Twitter</p>
           <FaXTwitter className="text-2xl" />
-          <p>cocay token</p>
+          {!_xUserName ? (
+            <button onClick={_signInWithX}>
+              Conectar
+            </button>
+          ) : (
+            <p>{_xUserName}</p>
+          )}
+          
         </div>
       </div>
     </div>

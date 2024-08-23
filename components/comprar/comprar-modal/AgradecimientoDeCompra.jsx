@@ -1,5 +1,6 @@
 import { IoMdArrowRoundBack } from "react-icons/io";
 import LoginTwitterModal from "../../LoginTwitterModal";
+import { useState } from "react";
 
 const AgradecimientoDeCompra = ({
   setAgradecimiento,
@@ -7,9 +8,41 @@ const AgradecimientoDeCompra = ({
   setLoggedTwitter,
   modalLoginTwitter,
   setModalLoginTwitter,
+  _connectWithX,
+  _accessToken,
+  _accessSecret
 }) => {
-  const tweetMessage = "¡Gracias por ser parte de Cocay Token!";
-  const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetMessage)}`;
+  // const tweetMessage = "¡Gracias por ser parte de Cocay Token!";
+  // const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetMessage)}`;
+
+  const [loading, setLoading] = useState(false)
+
+  const makeTwitterPost = async () => {
+
+    setLoading(true)
+
+    const data = {
+      at: _accessToken,
+      as: _accessSecret
+    }
+
+    const response = await fetch('http://localhost:8000/post-gratitude', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+
+    if (response.status === 200) {
+      setLoading(false)
+      alert('Post creado con éxito')
+    }
+    else {
+      setLoading(false)
+      alert('Error al crear post')
+    }
+  }
 
   return (
     <div className="relative bg-back w-full max-w-[700px] my-8 rounded-[18px] border-2 border-primary h-fit pb-12 p-2">
@@ -38,7 +71,7 @@ const AgradecimientoDeCompra = ({
             Cerrar
           </button>
 
-          <button
+          {/* <button
             onClick={() => {
               if (!loggedTwitter) {
                 setModalLoginTwitter(true);
@@ -49,7 +82,20 @@ const AgradecimientoDeCompra = ({
             className="button-3d-1 "
           >
             Twittear
+          </button> */}
+
+          <button
+            onClick={() => { _accessToken ? makeTwitterPost() : _connectWithX() }}
+            className="button-3d-2 !flex flex-wrap justify-center items-center gap-[10px]"
+            disabled={loading}
+          >
+            {!_accessToken ? (
+              <p>Conecta para compartir</p>
+            ) : (
+              <> {!loading ? <p>Compartir en</p> : <p>Cargando..</p>} </>
+            )}
           </button>
+
         </div>
       </div>
       {modalLoginTwitter && (

@@ -19,13 +19,14 @@ const BuyCocay = ({
   setLoggedTwitter,
   modalLoginTwitter,
   setModalLoginTwitter,
+  _connectWithX,
+  _accessToken,
+  _accessSecret
 }) => {
   const [selectedCurrency, setSelectedCurrency] = useState("USDT");
   const [confirmado, setConfirmado] = useState(false);
   const [agradecimiento, setAgradecimiento] = useState(false);
   const [cantidad, setCantidad] = useState()
-
-
 
   return (
     <div className="relative bg-back w-full max-w-[700px] my-8 rounded-[18px] border-2 border-primary h-fit pb-12">
@@ -110,6 +111,9 @@ const BuyCocay = ({
             setLoggedTwitter={setLoggedTwitter}
             modalLoginTwitter={modalLoginTwitter}
             setModalLoginTwitter={setModalLoginTwitter}
+            _connectWithX={_connectWithX}
+            _accessToken={_accessToken}
+            _accessSecret={_accessSecret}
           />
         </div>
       )}

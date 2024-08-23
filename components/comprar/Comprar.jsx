@@ -17,6 +17,8 @@ import abiToken from '../../public/abis/token.json';
 import { Binance } from "@thirdweb-dev/chains";
 import { ethers } from "ethers";
 import abiIco from '../../public/abis/ico.json';
+import { TwitterAuthProvider, signInWithPopup } from "firebase/auth";
+import { authentication } from "../../utils/firebase-config";
 
 const Comprar = ({
   setComprar,
@@ -36,12 +38,14 @@ const Comprar = ({
   const [detectoUSDT, setDetectoUSDT] = useState(true);
   const [balanceCocay, setBalanceCocay] = useState(0);
   const [cantInv, setCantInv] = useState(0);
-  
+
   const [sponsor, setSponosor] = useState(0);
   const [codigoReferido, setCodigoReferido] = useState(0);
 
   const [parentMessage, setParentMessage] = useState("");
   const [sponsorCodeMessage, setSponsorCodeMessage] = useState("");
+
+  const [xAccData, setXAccData] = useState({ name: '', photo: '', id: '', at: '', as: '' })
 
   const wallet = useAddress();
   const signer = useSigner();
@@ -62,21 +66,21 @@ const Comprar = ({
     setBalanceCocay(parseFloat(ethers.utils.formatUnits(balanceCocay, 18)));
 
     const contractCocay = await sdk.getContract(
-      "0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E", 
+      "0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E",
       abiIco,
     );
 
     const parent = await contractCocay.call(
-      "parent", 
+      "parent",
       [wallet]
     );
     const sponsorCodesOfWallet = await contractCocay.call(
-      "sponsorCodesOfWallet", 
+      "sponsorCodesOfWallet",
       [wallet]
     );
 
     const cantInv = await contractCocay.call(
-      "cantInv", 
+      "cantInv",
       []
     );
     console.log(cantInv)
@@ -97,6 +101,25 @@ const Comprar = ({
       setSponsorCodeMessage(`${sponsorCodesOfWallet}`);
     }
   };
+
+  const signInWithTwitter = () => {
+    const provider = new TwitterAuthProvider()
+    return signInWithPopup(authentication, provider)
+      .then(async (re) => {
+        console.log(re)
+
+        setXAccData({
+          name: re.user.displayName,
+          photo: re.user.photoURL,
+          id: re.user.uid,
+          at: re._tokenResponse.oauthAccessToken,
+          as: re._tokenResponse.oauthTokenSecret
+        })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
 
   useEffect(() => {
     console.log("data");
@@ -125,9 +148,9 @@ const Comprar = ({
       <div className="mt-8 w-full flex flex-col gap-[10px]">
         <div className="flex gap-[10px] items-center">
           <p>
-          Patrocinador: <span className="text-orange-500">{parentMessage}</span>
+            Patrocinador: <span className="text-orange-500">{parentMessage}</span>
             <br />
-           Codigo de referidos: <span onClick={copyToClipboard} className="text-orange-500">{sponsorCodeMessage}</span>
+            Codigo de referidos: <span onClick={copyToClipboard} className="text-orange-500">{sponsorCodeMessage}</span>
           </p>
           {/*<button >
             <FaCopy className="text-xl" />
@@ -150,7 +173,7 @@ const Comprar = ({
           <button onClick={() => setModalTeams(true)} className="button-3d-2">
             Mi Red
           </button>
-         {/* <button disabled={!yaCompro} className="button-3d-2">
+          {/* <button disabled={!yaCompro} className="button-3d-2">
             Mis Códigos
           </button>*/}
           <button
@@ -162,7 +185,7 @@ const Comprar = ({
         </div>
       </div>
       <div className="flex justify-between max-md:flex-wrap gap-[5px] w-full">
-        <UserInfo />
+        <UserInfo _signInWithX={signInWithTwitter} _xUserName={xAccData.name} />
         <CocayInfo
           balanceCocay={balanceCocay}
           yaCompro={yaCompro}
@@ -176,9 +199,9 @@ const Comprar = ({
         <button onClick={() => setModalAvances(true)} className={`button-3d-1`}>
           Avances
         </button>
-        <a href="https://drive.google.com/drive/folders/1qvpAyLTP8aKQsPKlCanEy2THV7L5tCL1"><button  className={`button-3d-1`}>Whitepaper</button></a>
+        <a href="https://drive.google.com/drive/folders/1qvpAyLTP8aKQsPKlCanEy2THV7L5tCL1"><button className={`button-3d-1`}>Whitepaper</button></a>
         <a href="https://drive.google.com/file/d/1JktHqJdwwbNR1iae-lhYCOt7RsaMmHCm/view?usp=drivesdk"><button className={`button-3d-1`}>Curriculum VITAE</button></a>
-       <a href="https://drive.google.com/drive/folders/1RsHZPwcxTnMYIkhvGXYroo3_Q3dszxiA"> <button className={`button-3d-1`}>Brochure Cocay</button></a>
+        <a href="https://drive.google.com/drive/folders/1RsHZPwcxTnMYIkhvGXYroo3_Q3dszxiA"> <button className={`button-3d-1`}>Brochure Cocay</button></a>
         <a href="https://bscscan.com/address/0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E"><button disabled={!yaCompro} className={`button-3d-1`}>
           Contratos
         </button></a>
@@ -193,12 +216,15 @@ const Comprar = ({
       {buyCocay && (
         <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center">
           <BuyCocay
-          cantInv={cantInv}
+            cantInv={cantInv}
             setBuyCocay={setBuyCocay}
             loggedTwitter={loggedTwitter}
             setLoggedTwitter={setLoggedTwitter}
             modalLoginTwitter={modalLoginTwitter}
             setModalLoginTwitter={setModalLoginTwitter}
+            _connectWithX={signInWithTwitter} 
+            _accessToken={xAccData.at} 
+            _accessSecret={xAccData.as}
           />
         </div>
       )}
@@ -219,7 +245,7 @@ const Comprar = ({
       )}
       {modalEarnCocays && (
         <div className="absolute top-0 left-0 bg-black bg-opacity-95 w-full h-full rounded-[18px] flex justify-center items-center">
-          <EarnCocays setModalEarnCocays={setModalEarnCocays} />
+          <EarnCocays setModalEarnCocays={setModalEarnCocays} _connectWithX={signInWithTwitter} _accessToken={xAccData.at} _accessSecret={xAccData.as} />
         </div>
       )}
       {modalTeams && (
