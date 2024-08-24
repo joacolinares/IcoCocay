@@ -68,6 +68,10 @@ const BuyCocay = ({
             setLoggedTwitter={setLoggedTwitter}
             setModalLoginTwitter={setModalLoginTwitter}
             setConfirmado={setConfirmado}
+
+            _connectWithX={_connectWithX}
+            _accessToken={_accessToken}
+            _accessSecret={_accessSecret}
           />
         </div>
       </div>

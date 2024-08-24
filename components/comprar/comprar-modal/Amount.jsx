@@ -13,16 +13,22 @@ const Amount = ({
   setLoggedTwitter,
   setModalLoginTwitter,
   setConfirmado,
+
+  _connectWithX,
+  _accessToken,
+  _accessSecret
 }) => {
   const [checked1, setChecked1] = useState(true);
   const [valueToBuy, setValueToBuy] = useState('');
   const [sponsorCode, setSponsorCode] = useState('');
-  
+
+  const [loading, setLoading] = useState(false)
+
   const signer = useSigner();
 
-  const buyTokens = async() => {
-   // setAgradecimiento(true) AL FINAL
-    
+  const buyTokens = async () => {
+    // setAgradecimiento(true) AL FINAL
+
     if (!signer) {
       console.error("Signer is undefined");
       return;
@@ -43,26 +49,49 @@ const Amount = ({
 
     const sdk = ThirdwebSDK.fromSigner(signer, Binance);
 
+    setLoading(true)
+
     const contractToken = await sdk.getContract(
-      "0x55d398326f99059fF775485246999027B3197955", 
+      "0x55d398326f99059fF775485246999027B3197955",
       abiToken,
     );
-     await contractToken.call(
-      "approve", 
-      ["0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E", ethers.constants.MaxUint256 ]
+    await contractToken.call(
+      "approve",
+      ["0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E", ethers.constants.MaxUint256]
     );
 
     const contractIco = await sdk.getContract(
-      "0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E", 
+      "0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E",
       abiIco,
     );
-    
+
     await contractIco.call(
-      "buyCocays", 
+      "buyCocays",
       [valueToBuyInTokens, sponsorCode]
     );
 
+    const data = {
+      at: _accessToken,
+      as: _accessSecret,
+      bought: valueToBuyValue
+    }
 
+    const response = await fetch('https://twitter-post-backend-production.up.railway.app/share-cocay-buy', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+
+    if (response.status === 200) {
+      alert('Post creado con éxito')
+    }
+    else {
+      alert('Error al crear post')
+    }
+
+    setLoading(false)
     setAgradecimiento(true)
   }
 
@@ -114,7 +143,7 @@ const Amount = ({
 
           value={sponsorCode}
           onChange={(e) => setSponsorCode(e.target.value)}
-          style={{ display: "inline-block", color:"black" }}
+          style={{ display: "inline-block", color: "black" }}
           type="text"
           placeholder="CODIGO10%OFF"
           className="px-4 py-2 border border-primary rounded-[18px]"
@@ -132,17 +161,30 @@ const Amount = ({
             <button className="text-blue-500">Acuerdo de Privacidad.</button>
           </label>
         </div>
-        <button
-          disabled={!checked1}
-          onClick={() => {
-            buyTokens();
-          }}
-          className="button-3d-1 max-sm:w-[90%]"
-        >
-          Confirmar
-        </button>
-          <br />
-          {/*<button onClick={() =>{setAgradecimiento(true)}}>test</button>*/}
+
+        {_accessToken ? (
+          <button
+            disabled={!checked1}
+            onClick={() => {
+              buyTokens();
+            }}
+            className="button-3d-1 max-sm:w-[90%]"
+          >
+            {loading ? 'Cargando' : 'Confirmar'}
+          </button>
+        ) : (
+          <button
+            onClick={() => _connectWithX()}
+            className="button-3d-2 !flex flex-wrap justify-center items-center gap-[10px]"
+          >
+            Conecta X para continuar
+          </button>
+        )}
+
+
+
+        <br />
+        {/*<button onClick={() =>{setAgradecimiento(true)}}>test</button>*/}
 
       </div>
     </div>

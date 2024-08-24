@@ -1,14 +1,12 @@
 import token from "../public/token.gif";
 import { IoCloseOutline } from "react-icons/io5";
-import { ConnectWallet, useAddress} from "@thirdweb-dev/react";
+import { ConnectWallet, useAddress } from "@thirdweb-dev/react";
 import { ThirdwebProvider, ConnectButton } from "thirdweb/react";
 import { useEffect, useState } from "react";
 import { createThirdwebClient } from "thirdweb";
 import { inAppWallet } from "thirdweb/wallets";
-
-
-
-
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { googleProvider, authentication } from "../utils/firebase-config";
 
 // eslint-disable-next-line react/prop-types
 const ConnectWalletComp = ({ setLoggedIn }) => {
@@ -19,13 +17,37 @@ const ConnectWalletComp = ({ setLoggedIn }) => {
   //estados para ver si puede continuar (Ya conecto wallet y X)
   const [loggedWallet, setLoggedWallet] = useState(false);
   // const [loggedX, setLoggedX] = useState(false);
+  const [googleUserName, setGoogleUserName] = useState('')
 
   const wallet = useAddress()
-  
+
+  const signInWithGoogle = () => {
+    signInWithPopup(authentication, googleProvider)
+      .then((result) => {
+        console.log(result)
+        const credential = GoogleAuthProvider.credentialFromResult(result)
+        const token = credential.accessToken
+        const user = result.user
+        console.log(user)
+        setGoogleUserName(user.displayName)
+
+        // setXAccData({
+        //   name: re.user.displayName,
+        //   photo: re.user.photoURL,
+        //   id: re.user.uid,
+        //   at: re._tokenResponse.oauthAccessToken,
+        //   as: re._tokenResponse.oauthTokenSecret
+        // })
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
   useEffect(() => {
     console.log(wallet)
 
-    if(wallet != undefined){
+    if (wallet != undefined) {
       setLoggedWallet(true)
     }
 
@@ -118,15 +140,27 @@ const ConnectWalletComp = ({ setLoggedIn }) => {
           </button>*/}
           <ConnectWallet />
           <br />
-          
-        
+
+          <p className="text-xl font-semibold">
+            Inicia sesión con Google
+          </p>
+
+          <button
+            onClick={signInWithGoogle}
+            className="button-3d-1"
+            disabled={googleUserName}
+          >
+            {googleUserName ? googleUserName : 'Iniciar sesión'}
+          </button>
+
+
           <button
             onClick={() => {
               if (loggedWallet) {
                 setLoggedIn(true);
               }
             }}
-            disabled={!loggedWallet}
+            disabled={!loggedWallet || !googleUserName}
             className="mt-[20px] button-3d-1"
           >
             Continuar
