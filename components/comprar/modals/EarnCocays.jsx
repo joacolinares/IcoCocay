@@ -17,7 +17,7 @@ const EarnCocays = ({ setModalEarnCocays, _connectWithX, _accessToken, _accessSe
       earned: 15
     }
 
-    const response = await fetch('https://twitter-post-backend.vercel.app/share-cocay-earns', {
+    const response = await fetch('https://twitter-post-backend-production.up.railway.app/share-cocay-earns', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

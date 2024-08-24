@@ -26,7 +26,7 @@ const AgradecimientoDeCompra = ({
       as: _accessSecret
     }
 
-    const response = await fetch('https://twitter-post-backend.vercel.app/post-gratitude', {
+    const response = await fetch('https://twitter-post-backend-production.up.railway.app/post-gratitude', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
