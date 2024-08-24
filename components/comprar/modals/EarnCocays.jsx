@@ -1,7 +1,7 @@
 import { IoMdArrowRoundBack } from "react-icons/io";
 import x from "/icons/x.svg";
 import { useEffect, useState } from "react";
-
+import token from "../../../public/token.gif";
 // eslint-disable-next-line react/prop-types
 const EarnCocays = ({ setModalEarnCocays, _connectWithX, _accessToken, _accessSecret }) => {
 
@@ -48,10 +48,10 @@ const EarnCocays = ({ setModalEarnCocays, _connectWithX, _accessToken, _accessSe
       </button>
 
       <div className="mt-12 w-full flex flex-col gap-[30px] items-center">
-        <p className="text-2xl font-semibold text-orange-500">Ganados</p>
+        <p className="text-2xl font-semibold text-orange-500">Total Generado</p>
         <div className="flex flex-col items-center gap-[20px] bg-[#3d3d3d] px-4 py-2 rounded-[18px] border border-orange-500">
-          <div className="text-xl font-medium">Staking Cocays = 0</div>
-          <div className="text-xl font-medium">Teams Cocays = 0</div>
+          <div style={{display:"inline-block"}} className="text-xl font-medium">Staking Cocays = 0  <img style={{display:"inline-block"}} src={token} alt="Token Gif" className="object-cover w-[35px]" /></div> 
+          <div style={{display:"inline-block"}} className="text-xl font-medium">Teams Cocays = 0  <img style={{display:"inline-block"}} src={token} alt="Token Gif" className="object-cover w-[35px]" /></div>
         </div>
 
         <div className="flex gap-[10px]">

@@ -87,13 +87,13 @@ const GenerateCode = ({ setModalGenerateCode }) => {
           <input
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
-          placeholder={"40"}
+          placeholder={"0"}
           type="text"
           className="rounded-[18px] p-2 text-white border border-orange-500 bg-black"
         />
         </div>
           </div>
-          <label>Cantidad disponible a repartir: {cantReferral.status &&cantReferral.data / 10} %</label>
+          <label>Cantidad disponible a repartir: 0 - {cantReferral.status &&cantReferral.data / 10} %</label>
           <Web3Button
             contractAddress="0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E" // Your smart contract address
             contractAbi={abiIco}
@@ -101,7 +101,7 @@ const GenerateCode = ({ setModalGenerateCode }) => {
               console.log(name,refferal,amount)
               await contract.call(
                 "addSponsor", 
-                [name,refferal,amount]
+                [name,refferal,amount * 10]
               );
             }}
             onSuccess={() =>{alert("TODO BIEN")}

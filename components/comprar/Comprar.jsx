@@ -53,7 +53,7 @@ const Comprar = ({
   const data = async () => {
     const sdk = ThirdwebSDK.fromSigner(signer, Binance);
     const contractCocayToken = await sdk.getContract(
-      "0x68d54B7C15CbdEC9B632A261D45f5D8786DD3530",
+      "0xe49D7E94D0E20089d517e02F3CBc2Fc00aF7C0da",
       abiToken,
     );
 
