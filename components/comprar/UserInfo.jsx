@@ -10,7 +10,7 @@ import abiIco from '../../public/abis/ico.json';
 import abiToken from '../../public/abis/token.json';
 import { ethers } from "ethers";
 
-const UserInfo = ({ _signInWithX, _xUserName }) => {
+const UserInfo = ({ _signInWithX, _xUserName, _googleUserName }) => {
   const [tipo, setTipo] = useState("Billetera");
   const [email, setEmail] = useState("");
   const [balanceUsdt, setBalanceUSDT] = useState(0);
@@ -71,6 +71,7 @@ const UserInfo = ({ _signInWithX, _xUserName }) => {
             <p>Gmail</p>
             <img src={gmail} className="object-cover w-[30px]" />
             <p className="">{email}</p>
+            <p>{_googleUserName}</p>
           </div>
        <div className="flex gap-[10px] items-center bg-[#353535] p-2 rounded-[18px]">
           <p>Wallet</p>

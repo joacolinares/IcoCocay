@@ -27,6 +27,7 @@ const Comprar = ({
   setLoggedTwitter,
   modalLoginTwitter,
   setModalLoginTwitter,
+  _googleUserName
 }) => {
   const [yaCompro, setYaCompro] = useState(true);
   const [buyCocay, setBuyCocay] = useState(false);
@@ -185,7 +186,7 @@ const Comprar = ({
         </div>
       </div>
       <div className="flex justify-between max-md:flex-wrap gap-[5px] w-full">
-        <UserInfo _signInWithX={signInWithTwitter} _xUserName={xAccData.name} />
+        <UserInfo _signInWithX={signInWithTwitter} _xUserName={xAccData.name} _googleUserName={_googleUserName} />
         <CocayInfo
           balanceCocay={balanceCocay}
           yaCompro={yaCompro}

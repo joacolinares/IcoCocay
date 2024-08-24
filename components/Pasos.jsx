@@ -7,12 +7,13 @@ const Pasos = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [loggedTwitter, setLoggedTwitter] = useState(false);
   const [modalLoginTwitter, setModalLoginTwitter] = useState(false);
+  const [googleUserName, setGoogleUserName] = useState('')
 
   return (
     <div className="text-white w-full h-full max-w-[1200px]">
       {!loggedIn ? (<>
         
-        <ConnectWalletComp setLoggedIn={setLoggedIn} />
+        <ConnectWalletComp setLoggedIn={setLoggedIn} _setGoogleUserName={setGoogleUserName} />
       
       </>
       ) : (
@@ -21,6 +22,7 @@ const Pasos = () => {
           setLoggedTwitter={setLoggedTwitter}
           modalLoginTwitter={modalLoginTwitter}
           setModalLoginTwitter={setModalLoginTwitter}
+          _googleUserName={googleUserName}
         />
       )}
     </div>

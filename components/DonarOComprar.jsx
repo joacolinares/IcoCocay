@@ -8,6 +8,7 @@ const DonarOComprar = ({
   setLoggedTwitter,
   modalLoginTwitter,
   setModalLoginTwitter,
+  _googleUserName
 }) => {
   const [comprar, setComprar] = useState(false);
   const [donar, setDonar] = useState(false);
@@ -71,6 +72,7 @@ const DonarOComprar = ({
           setLoggedTwitter={setLoggedTwitter}
           modalLoginTwitter={modalLoginTwitter}
           setModalLoginTwitter={setModalLoginTwitter}
+          _googleUserName={_googleUserName}
         />
       ) : (
         <Donar

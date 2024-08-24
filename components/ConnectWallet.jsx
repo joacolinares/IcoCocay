@@ -9,7 +9,7 @@ import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { googleProvider, authentication } from "../utils/firebase-config";
 
 // eslint-disable-next-line react/prop-types
-const ConnectWalletComp = ({ setLoggedIn }) => {
+const ConnectWalletComp = ({ setLoggedIn, _setGoogleUserName }) => {
   //estados para manejar los modals de tutoriales
   const [tutoriales, setTutoriales] = useState(false);
   const [tutorialDonacion, setTutorialDonacion] = useState(false);
@@ -30,14 +30,7 @@ const ConnectWalletComp = ({ setLoggedIn }) => {
         const user = result.user
         console.log(user)
         setGoogleUserName(user.displayName)
-
-        // setXAccData({
-        //   name: re.user.displayName,
-        //   photo: re.user.photoURL,
-        //   id: re.user.uid,
-        //   at: re._tokenResponse.oauthAccessToken,
-        //   as: re._tokenResponse.oauthTokenSecret
-        // })
+        _setGoogleUserName(user.displayName)
       })
       .catch((error) => {
         console.log(error)
