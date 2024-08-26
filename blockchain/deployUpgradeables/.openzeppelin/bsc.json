@@ -22,7 +22,7 @@
       "kind": "uups"
     },
     {
-      "address": "0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E",
+      "address": "0x6C3C25145668015a274159984AC8ED99EC3Eb7d6",
       "txHash": "0xa06142d1694f91db73722281eb4fcb1b3dc7761e9fdff65f403b3a396a175461",
       "kind": "uups"
     }
@@ -1340,7 +1340,7 @@
       }
     },
     "db10ce862ab5750c9a93c8daf6b4105b2fd2c44f674f9192c27c74d21b11c81d": {
-      "address": "0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E",
+      "address": "0x6C3C25145668015a274159984AC8ED99EC3Eb7d6",
       "txHash": "0x981dc27e72f66aa4750e99294595f3ba8b9e74dfdff73ea13d756ef3fe6068c1",
       "layout": {
         "solcVersion": "0.8.24",

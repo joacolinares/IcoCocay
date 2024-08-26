@@ -11,7 +11,7 @@ import { Binance } from "@thirdweb-dev/chains";
 import abiToken from '../public/abis/token.json';
 import abiIco from '../public/abis/ico.json';
 import { ethers } from "ethers";
-
+import { ToastContainer, toast,Bounce } from 'react-toastify';
 
 
 // eslint-disable-next-line react/prop-types
@@ -29,7 +29,17 @@ const Donar = ({
   const [balanceUsdt, setBalanceUSDT] = useState(0);
   const [valueToBuy, setValueToBuy] = useState('');
 
-
+  const notify = () => toast.success('Compra realizada con extio!', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    });;
 
   const wallet = useAddress();
   const signer = useSigner();
@@ -78,11 +88,11 @@ const Donar = ({
      );
       await contractToken.call(
        "approve", 
-       ["0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E", ethers.constants.MaxUint256 ]
+       ["0x6C3C25145668015a274159984AC8ED99EC3Eb7d6", ethers.constants.MaxUint256 ]
      );
  
      const contractIco = await sdk.getContract(
-       "0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E", 
+       "0x6C3C25145668015a274159984AC8ED99EC3Eb7d6", 
        abiIco,
      );
      
@@ -93,6 +103,7 @@ const Donar = ({
  
  
      setAgradecimiento(true)
+     notify()
    }
 
 
@@ -104,6 +115,7 @@ const Donar = ({
 
   return (
     <div className="w-full py-8 bg-black bg-opacity-80 border border-primary flex flex-col gap-[10px] items-center rounded-[18px] relative p-2 sm:p-4">
+       <ToastContainer />
       <button
         onClick={() => {
           setDonar(false);

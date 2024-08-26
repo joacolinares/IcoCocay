@@ -33,7 +33,7 @@ async function deploy() {
     var SatoshiContract = await hre.ethers.getContractFactory("IcoCocay");
     var satoshiContract = await upgrades.deployProxy(
         SatoshiContract,
-        ['0x55d398326f99059fF775485246999027B3197955', '0xe49D7E94D0E20089d517e02F3CBc2Fc00aF7C0da','0x534cae6D2510ED7688B220fE9a9fC1B9ba9DA9b8', '0x74598319417e3dFf6081BF1eE9d269F5B41D4a93'],
+        ['0x55d398326f99059fF775485246999027B3197955', '0xf63F3543253B9Ce2a720410Cf73fe923DA617Ca3','0x5921aaCcc700164f667586f0315c579aA597c0AB', '0x74598319417e3dFf6081BF1eE9d269F5B41D4a93'],
         { kind: "uups", gasLimit: 10000000, gasPrice: ethers.parseUnits('5', 'gwei') },
     );
     var tx = await satoshiContract.waitForDeployment();

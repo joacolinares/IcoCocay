@@ -4,6 +4,9 @@ import abiIco from '../../../public/abis/ico.json';
 import abiToken from '../../../public/abis/token.json';
 import { useSigner, ThirdwebSDK } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
+import { ToastContainer, toast,Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Amount = ({
   setCantidad,
@@ -25,6 +28,20 @@ const Amount = ({
   const [loading, setLoading] = useState(false)
 
   const signer = useSigner();
+
+
+  const notify = () => toast.success('Compra realizada con extio!', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    });;
+
 
   const buyTokens = async () => {
     // setAgradecimiento(true) AL FINAL
@@ -57,11 +74,11 @@ const Amount = ({
     );
     await contractToken.call(
       "approve",
-      ["0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E", ethers.constants.MaxUint256]
+      ["0x6C3C25145668015a274159984AC8ED99EC3Eb7d6", ethers.constants.MaxUint256]
     );
 
     const contractIco = await sdk.getContract(
-      "0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E",
+      "0x6C3C25145668015a274159984AC8ED99EC3Eb7d6",
       abiIco,
     );
 
@@ -93,10 +110,12 @@ const Amount = ({
 
     setLoading(false)
     setAgradecimiento(true)
+    notify()
   }
 
   return (
     <div className="flex gap-[30px] flex-wrap justify-center relative">
+              <ToastContainer />
       {/*<div className="flex flex-col gap-[20px] items-center">
         <div className="flex items-center gap-[20px] w-full">
           <div className="h-[1px] w-full bg-primary" />
@@ -170,7 +189,7 @@ const Amount = ({
             }}
             className="button-3d-1 max-sm:w-[90%]"
           >
-            {loading ? 'Cargando' : 'Confirmar'}
+            {loading ? 'Realizando Compra' : 'Confirmar'}
           </button>
         ) : (
           <button

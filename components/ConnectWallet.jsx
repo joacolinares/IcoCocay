@@ -1,6 +1,6 @@
 import token from "../public/token.gif";
 import { IoCloseOutline } from "react-icons/io5";
-import { ConnectWallet, useAddress } from "@thirdweb-dev/react";
+import { ConnectWallet, useAddress,useWallet } from "@thirdweb-dev/react";
 import { ThirdwebProvider, ConnectButton } from "thirdweb/react";
 import { useEffect, useState } from "react";
 import { createThirdwebClient } from "thirdweb";
@@ -18,8 +18,25 @@ const ConnectWalletComp = ({ setLoggedIn, _setGoogleUserName }) => {
   const [loggedWallet, setLoggedWallet] = useState(false);
   // const [loggedX, setLoggedX] = useState(false);
   const [googleUserName, setGoogleUserName] = useState('')
+  const [tipo, setTipo] = useState("Billtera")
 
   const wallet = useAddress()
+  const connectedWallet = useWallet()
+
+  const getEmail = () =>{
+    if (!connectedWallet) {
+      console.error("connectedWallet is undefined");
+      return;
+    }
+    const personalwallet = connectedWallet.getPersonalWallet();
+    console.log(personalwallet)
+    if(personalwallet && (personalwallet).walletId === 'embeddedWallet') {
+     const email = (personalwallet).connector?.user?.authDetails?.email;
+     console.log(email)
+     setTipo("Email")
+     return email;
+   }
+ }
 
   const signInWithGoogle = () => {
     signInWithPopup(authentication, googleProvider)
@@ -43,6 +60,8 @@ const ConnectWalletComp = ({ setLoggedIn, _setGoogleUserName }) => {
     if (wallet != undefined) {
       setLoggedWallet(true)
     }
+
+    getEmail()
 
   }, [wallet])
 
@@ -134,7 +153,26 @@ const ConnectWalletComp = ({ setLoggedIn, _setGoogleUserName }) => {
           <ConnectWallet />
           <br />
 
-          <p className="text-xl font-semibold">
+
+          {tipo === "Email" ? 
+          <>
+        
+
+
+          <button
+            onClick={() => {
+              if (loggedWallet) {
+                setLoggedIn(true);
+              }
+            }}
+            className="mt-[20px] button-3d-1"
+          >
+            Continuar
+          </button>
+          </> 
+          :
+           <>
+                    <p className="text-xl font-semibold">
             Inicia sesión con Google
           </p>
 
@@ -158,6 +196,9 @@ const ConnectWalletComp = ({ setLoggedIn, _setGoogleUserName }) => {
           >
             Continuar
           </button>
+          </>
+          }
+
         </div>
       </div>
     </div>

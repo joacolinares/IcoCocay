@@ -19,13 +19,13 @@ const Teams = ({ setModalTeams }) => {
 
 
 
-  
+
   const fetchRecibos = async () => {
     if (!wallet || !signer) return;
 
     const sdk = ThirdwebSDK.fromSigner(signer, Binance);
     const contractIco = await sdk.getContract(
-      "0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E", 
+      "0x6C3C25145668015a274159984AC8ED99EC3Eb7d6", 
       abiIco
     );
 
@@ -72,7 +72,7 @@ const Teams = ({ setModalTeams }) => {
   const fetchSponsorEvents3 = async () => {
     const sdk = ThirdwebSDK.fromSigner(signer, Binance);
     const contractIco = await sdk.getContract(
-      "0x708B2FbFfa4f28a0b0e22575eA2ADbE1a8Ab0e0E", 
+      "0x6C3C25145668015a274159984AC8ED99EC3Eb7d6", 
       abiIco
     );
 
