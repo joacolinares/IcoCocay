@@ -73,7 +73,7 @@ async function main() {
     });
 }
 
-deploy().catch((error) => {
+main().catch((error) => {
     console.error(error);
     process.exitCode = 1;
 });

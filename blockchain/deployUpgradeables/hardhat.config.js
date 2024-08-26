@@ -16,7 +16,7 @@ module.exports = {
     bsc: {
       url: "https://bsc-dataseed.binance.org/",
       chainId: 56,
-      accounts: ["1710ebb1b298581e3f5e53ffb390975ccd37dc47c9664ec25c607c26ccbfa3bb"], // Asegúrate de definir la PRIVATE_KEY en tu .env
+      accounts: ["1eae322fbddf38508fa5ab74b54836ddbb3169220b9e663123bc56c113e43397"], // Asegúrate de definir la PRIVATE_KEY en tu .env
     },
   },
   etherscan: {
