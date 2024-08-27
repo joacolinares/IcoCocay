@@ -20,7 +20,7 @@ const LastTransactions = ({ yaCompro }) => {
       if (!wallet) return;
 
       const provider = new ethers.providers.JsonRpcProvider("https://bsc-mainnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3");
-      const contractAddress = "0x6C3C25145668015a274159984AC8ED99EC3Eb7d6";
+      const contractAddress = "0x722b6119E079693FAf6B54fa2E737B894151FD4C";
       const contract = new ethers.Contract(contractAddress, abi, provider);
 
       const eventSignature = ethers.utils.id("CocaysBought(address,uint256,string,uint256)");
@@ -71,7 +71,7 @@ const LastTransactions = ({ yaCompro }) => {
     const fetchTransactions2 = async () => {
       const sdk = ThirdwebSDK.fromSigner(signer, Binance);
       const contractIco = await sdk.getContract(
-        "0x6C3C25145668015a274159984AC8ED99EC3Eb7d6", 
+        "0x722b6119E079693FAf6B54fa2E737B894151FD4C", 
         abiIco
       );
 

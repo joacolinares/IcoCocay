@@ -6,17 +6,17 @@ module.exports = {
     version: "0.8.24",
     settings: {
       optimizer: {
-        enabled: true,
-        runs: 100,
+        //enabled: true,
+      //  runs: 100,
       },
-      viaIR: true,
+    //  viaIR: true,
     },
   },
   networks: {
     bsc: {
       url: "https://bsc-dataseed.binance.org/",
       chainId: 56,
-      accounts: ["1eae322fbddf38508fa5ab74b54836ddbb3169220b9e663123bc56c113e43397"], // Asegúrate de definir la PRIVATE_KEY en tu .env
+      accounts: ["e2ec0c8ad5bf6f9bb002f6b5fd5446e74c2582b22f06a26c8d8b2d01d6d34308"], // Asegúrate de definir la PRIVATE_KEY en tu .env
     },
   },
   etherscan: {

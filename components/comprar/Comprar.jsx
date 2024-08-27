@@ -54,7 +54,7 @@ const Comprar = ({
   const data = async () => {
     const sdk = ThirdwebSDK.fromSigner(signer, Binance);
     const contractCocayToken = await sdk.getContract(
-      "0xf63F3543253B9Ce2a720410Cf73fe923DA617Ca3",
+      "0x2dF0e8077C0e0a00A3d823afA5B4eFc750ae3CC1",
       abiToken,
     );
 
@@ -67,7 +67,7 @@ const Comprar = ({
     setBalanceCocay(parseFloat(ethers.utils.formatUnits(balanceCocay, 18)));
 
     const contractCocay = await sdk.getContract(
-      "0x6C3C25145668015a274159984AC8ED99EC3Eb7d6",
+      "0x722b6119E079693FAf6B54fa2E737B894151FD4C",
       abiIco,
     );
 
@@ -203,7 +203,7 @@ const Comprar = ({
         <a href="https://drive.google.com/drive/folders/1qvpAyLTP8aKQsPKlCanEy2THV7L5tCL1"><button className={`button-3d-1`}>Whitepaper</button></a>
         <a href="https://drive.google.com/file/d/1JktHqJdwwbNR1iae-lhYCOt7RsaMmHCm/view?usp=drivesdk"><button className={`button-3d-1`}>Curriculum VITAE</button></a>
         <a href="https://drive.google.com/drive/folders/1RsHZPwcxTnMYIkhvGXYroo3_Q3dszxiA"> <button className={`button-3d-1`}>Brochure Cocay</button></a>
-        <a href="https://bscscan.com/address/0x6C3C25145668015a274159984AC8ED99EC3Eb7d6"><button disabled={!yaCompro} className={`button-3d-1`}>
+        <a href="https://bscscan.com/address/0x722b6119E079693FAf6B54fa2E737B894151FD4C"><button disabled={!yaCompro} className={`button-3d-1`}>
           Contratos
         </button></a>
         <button className={`button-3d-1`}>Tutoriales</button>

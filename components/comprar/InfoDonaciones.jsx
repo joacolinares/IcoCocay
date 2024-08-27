@@ -27,7 +27,7 @@ const InfoDonaciones = () => {
   
       const sdk = ThirdwebSDK.fromSigner(signer, Binance);
       const contractIco = await sdk.getContract(
-        "0x6C3C25145668015a274159984AC8ED99EC3Eb7d6", 
+        "0x722b6119E079693FAf6B54fa2E737B894151FD4C", 
         abiIco
       );
   
